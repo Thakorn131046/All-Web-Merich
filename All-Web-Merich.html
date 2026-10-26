@@ -9,6 +9,9 @@
     <meta property="og:title" content="ME RICH TWENTY FOUR - Corporate Intranet Portal">
     <meta property="og:description" content="ศูนย์รวมระบบงานสำหรับพนักงานภายในองค์กร บริษัท มี ริช ทเวนตี้โฟร์ จำกัด">
     <meta property="og:type" content="website">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 
     <!-- Favicon (SVG Brand Logo) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 320'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='100%25' x2='0%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%2314532d'/%3E%3Cstop offset='100%25' stop-color='%2322c55e'/%3E%3C/linearGradient%3E%3ClinearGradient id='g2' x1='0%25' y1='100%25' x2='0%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23166534'/%3E%3Cstop offset='100%25' stop-color='%234ade80'/%3E%3C/linearGradient%3E%3ClinearGradient id='g3' x1='0%25' y1='100%25' x2='0%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%2315803d'/%3E%3Cstop offset='100%25' stop-color='%2386efac'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='40,280 160,30 200,30 80,280' fill='url(%23g1)'/%3E%3Cpolygon points='90,280 210,30 250,30 130,280' fill='url(%23g2)'/%3E%3Cpolygon points='200,280 250,160 290,160 240,280' fill='url(%23g1)'/%3E%3Cpolygon points='140,280 290,30 360,280 310,280 270,190 230,280' fill='url(%23g3)'/%3E%3C/svg%3E">
@@ -159,6 +162,11 @@
                     <span id="current-time" class="text-sm font-bold text-brand-900 font-heading">00:00:00</span>
                     <span id="current-date" class="text-xs text-slate-500">--/--/----</span>
                 </div>
+                <button onclick="window.location.reload(true)"
+                    class="p-2.5 text-brand-700 hover:text-brand-900 hover:bg-brand-50 rounded-xl transition"
+                    title="โหลดข้อมูลล่าสุด (Refresh)">
+                    <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+                </button>
                 <button onclick="toggleInfoModal()"
                     class="p-2.5 text-brand-700 hover:text-brand-900 hover:bg-brand-50 rounded-xl transition"
                     title="คู่มือการใช้งาน">

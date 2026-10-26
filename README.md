@@ -3,7 +3,8 @@
 ศูนย์รวมทางเข้าสู่ระบบสารสนเทศ คลังสินค้า การวางแผน และการเงิน สำหรับบุคลากรภายในองค์กร **บริษัท มี ริช ทเวนตี้โฟร์ จำกัด (ME RICH TWENTY FOUR CO., LTD.)**
 
 🔗 **ลิงก์เข้าสู่เว็บไซต์ (Live Web Portal):**  
-👉 **[https://thakorn131046.github.io/All-Web-Merich/](https://thakorn131046.github.io/All-Web-Merich/)**
+- 🚀 **Vercel:** 👉 **[https://all-web-merich.vercel.app](https://all-web-merich.vercel.app)**
+- 🌐 **GitHub Pages:** 👉 **[https://thakorn131046.github.io/All-Web-Merich/](https://thakorn131046.github.io/All-Web-Merich/)**
 
 ---
 
