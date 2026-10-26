@@ -5,14 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ME RICH TWENTY FOUR - Corporate Intranet Portal</title>
+    <meta name="description" content="ME RICH TWENTY FOUR Corporate Intranet Portal - ศูนย์รวมระบบงานสารสนเทศ คลังสินค้า การผลิต บัญชี และฝ่ายขาย สำหรับบุคลากรภายในองค์กร บริษัท มี ริช ทเวนตี้โฟร์ จำกัด">
+    <meta property="og:title" content="ME RICH TWENTY FOUR - Corporate Intranet Portal">
+    <meta property="og:description" content="ศูนย์รวมระบบงานสำหรับพนักงานภายในองค์กร บริษัท มี ริช ทเวนตี้โฟร์ จำกัด">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon (SVG Brand Logo) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 320'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='100%25' x2='0%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%2314532d'/%3E%3Cstop offset='100%25' stop-color='%2322c55e'/%3E%3C/linearGradient%3E%3ClinearGradient id='g2' x1='0%25' y1='100%25' x2='0%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23166534'/%3E%3Cstop offset='100%25' stop-color='%234ade80'/%3E%3C/linearGradient%3E%3ClinearGradient id='g3' x1='0%25' y1='100%25' x2='0%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%2315803d'/%3E%3Cstop offset='100%25' stop-color='%2386efac'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='40,280 160,30 200,30 80,280' fill='url(%23g1)'/%3E%3Cpolygon points='90,280 210,30 250,30 130,280' fill='url(%23g2)'/%3E%3Cpolygon points='200,280 250,160 290,160 240,280' fill='url(%23g1)'/%3E%3Cpolygon points='140,280 290,30 360,280 310,280 270,190 230,280' fill='url(%23g3)'/%3E%3C/svg%3E">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Sarabun & Prompt -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -50,13 +56,7 @@
             background-color: #f6f8f6;
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        .font-heading {
+        h1, h2, h3, h4, h5, h6, .font-heading {
             font-family: 'Prompt', sans-serif;
         }
 
@@ -89,7 +89,16 @@
 
         .green-card-hover:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 24px -6px rgba(22, 101, 52, 0.12);
+            box-shadow: 0 14px 28px -6px rgba(22, 101, 52, 0.14);
+        }
+
+        /* Hide scrollbar for tabs */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
@@ -114,9 +123,7 @@
 
             <!-- Company Logo & Brand Name -->
             <div class="flex items-center space-x-3 sm:space-x-4">
-                <!-- SVG Logo based on ME RICH TWENTY FOUR Logo -->
-                <div
-                    class="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-1 shadow-md shadow-brand-900/5 border border-emerald-100 shrink-0">
+                <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-1 shadow-md shadow-brand-900/5 border border-emerald-100 shrink-0">
                     <svg viewBox="0 0 400 320" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <linearGradient id="grad1" x1="0%" y1="100%" x2="0%" y2="0%">
@@ -132,7 +139,6 @@
                                 <stop offset="100%" style="stop-color:#86efac;stop-opacity:1" />
                             </linearGradient>
                         </defs>
-                        <!-- Triangle Strands -->
                         <polygon points="40,280 160,30 200,30 80,280" fill="url(#grad1)" />
                         <polygon points="90,280 210,30 250,30 130,280" fill="url(#grad2)" />
                         <polygon points="200,280 250,160 290,160 240,280" fill="url(#grad1)" />
@@ -143,8 +149,7 @@
                     <h1 class="text-base sm:text-lg font-bold text-brand-950 leading-tight font-heading">
                         ME RICH TWENTY FOUR CO., LTD.
                     </h1>
-                    <p class="text-xs text-brand-700 font-medium">บริษัท มี ริช ทเวนตี้โฟร์ จำกัด • Internal Web Portal
-                    </p>
+                    <p class="text-xs text-brand-700 font-medium">บริษัท มี ริช ทเวนตี้โฟร์ จำกัด • Internal Web Portal</p>
                 </div>
             </div>
 
@@ -167,8 +172,7 @@
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         <!-- Company Banner -->
-        <div
-            class="relative overflow-hidden rounded-3xl green-gradient-bg text-white p-6 sm:p-10 mb-8 shadow-xl shadow-brand-900/10 border border-brand-800/40">
+        <div class="relative overflow-hidden rounded-3xl green-gradient-bg text-white p-6 sm:p-10 mb-8 shadow-xl shadow-brand-900/10 border border-brand-800/40">
             <!-- Decorative Vector Elements -->
             <div class="absolute right-0 bottom-0 opacity-10 translate-x-12 translate-y-12 pointer-events-none">
                 <svg width="380" height="300" viewBox="0 0 400 320" fill="white">
@@ -179,8 +183,7 @@
             </div>
 
             <div class="relative z-10 max-w-3xl">
-                <span
-                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white/15 text-brand-200 backdrop-blur-md mb-3 border border-white/10">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white/15 text-brand-200 backdrop-blur-md mb-3 border border-white/10">
                     <i data-lucide="shield-check" class="w-3.5 h-3.5 mr-1.5 text-brand-300"></i>
                     ศูนย์รวมระบบงานสำหรับพนักงานภายในองค์กร
                 </span>
@@ -202,8 +205,7 @@
                 </div>
                 <div>
                     <p class="text-xs text-slate-500 font-medium">ระบบทั้งหมด</p>
-                    <p class="text-lg font-bold text-brand-950 font-heading">10 <span
-                            class="text-xs font-normal text-slate-500">ระบบ</span></p>
+                    <p class="text-lg font-bold text-brand-950 font-heading">10 <span class="text-xs font-normal text-slate-500">ระบบ</span></p>
                 </div>
             </div>
 
@@ -213,20 +215,17 @@
                 </div>
                 <div>
                     <p class="text-xs text-slate-500 font-medium">รายการโปรด</p>
-                    <p id="stat-fav-count" class="text-lg font-bold text-brand-950 font-heading">0 <span
-                            class="text-xs font-normal text-slate-500">รายการ</span></p>
+                    <p id="stat-fav-count" class="text-lg font-bold text-brand-950 font-heading">0 <span class="text-xs font-normal text-slate-500">รายการ</span></p>
                 </div>
             </div>
 
             <div class="bg-white p-4 rounded-2xl border border-emerald-100/80 shadow-sm flex items-center space-x-3">
-                <div
-                    class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
                     <i data-lucide="layers" class="w-5 h-5"></i>
                 </div>
                 <div>
                     <p class="text-xs text-slate-500 font-medium">หมวดหมู่</p>
-                    <p class="text-lg font-bold text-brand-950 font-heading">5 <span
-                            class="text-xs font-normal text-slate-500">หมวด</span></p>
+                    <p class="text-lg font-bold text-brand-950 font-heading">4 <span class="text-xs font-normal text-slate-500">หมวด</span></p>
                 </div>
             </div>
 
@@ -253,11 +252,10 @@
             <div class="flex items-center gap-2.5">
                 <!-- Search Input -->
                 <div class="relative flex-1 sm:w-72">
-                    <i data-lucide="search"
-                        class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
                     <input type="text" id="search-input" placeholder="ค้นหาระบบงาน, คำอธิบาย..."
                         class="w-full pl-10 pr-9 py-2.5 bg-white border border-emerald-200/80 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 shadow-sm transition"
-                        oninput="handleSearch()">
+                        oninput="handleSearch()" onkeydown="handleSearchKey(event)">
                     <button id="clear-search" onclick="clearSearch()"
                         class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
                         <i data-lucide="x" class="w-4 h-4"></i>
@@ -267,7 +265,7 @@
                 <!-- Toggle Grid / List View -->
                 <div class="flex bg-slate-200/80 p-1 rounded-xl border border-slate-200 shrink-0">
                     <button id="view-grid-btn" onclick="setViewMode('grid')"
-                        class="p-2 rounded-lg text-brand-900 bg-white shadow-sm transition" title="มุมมองการ์ด">
+                        class="p-2 rounded-lg text-brand-950 bg-white shadow-sm transition" title="มุมมองการ์ด">
                         <i data-lucide="grid" class="w-4 h-4"></i>
                     </button>
                     <button id="view-list-btn" onclick="setViewMode('list')"
@@ -282,8 +280,9 @@
         <div id="favorites-container" class="mb-8 hidden">
             <div class="flex items-center space-x-2 mb-4">
                 <i data-lucide="star" class="w-4 h-4 text-amber-500 fill-amber-500"></i>
-                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-600 font-heading">ระบบที่ปักหมุดไว้
-                    (Favorites)</h3>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-600 font-heading">
+                    ระบบที่ปักหมุดไว้ (Favorites)
+                </h3>
             </div>
             <div id="favorites-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <!-- Dynamically Populated Favorites -->
@@ -295,19 +294,16 @@
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center space-x-2">
                     <i data-lucide="layout-list" class="w-4 h-4 text-brand-700"></i>
-                    <h3 id="section-title"
-                        class="text-xs font-bold uppercase tracking-wider text-slate-600 font-heading">
-                        รายการระบบงานทั้งหมด</h3>
+                    <h3 id="section-title" class="text-xs font-bold uppercase tracking-wider text-slate-600 font-heading">
+                        รายการระบบงานทั้งหมด
+                    </h3>
                 </div>
-                <span id="system-count"
-                    class="text-xs bg-brand-100 text-brand-800 px-3 py-1 rounded-full font-semibold">10 รายการ</span>
+                <span id="system-count" class="text-xs bg-brand-100 text-brand-800 px-3 py-1 rounded-full font-semibold">10 รายการ</span>
             </div>
 
             <!-- Empty State Search Result -->
-            <div id="empty-state"
-                class="hidden text-center py-16 bg-white rounded-3xl border border-dashed border-slate-300 my-4 shadow-sm">
-                <div
-                    class="w-16 h-16 bg-brand-50 rounded-2xl flex items-center justify-center mx-auto mb-4 text-brand-600">
+            <div id="empty-state" class="hidden text-center py-16 bg-white rounded-3xl border border-dashed border-slate-300 my-4 shadow-sm">
+                <div class="w-16 h-16 bg-brand-50 rounded-2xl flex items-center justify-center mx-auto mb-4 text-brand-600">
                     <i data-lucide="search-x" class="w-8 h-8"></i>
                 </div>
                 <h4 class="text-base font-bold text-slate-800 font-heading">ไม่พบข้อมูลระบบงานที่คุณค้นหา</h4>
@@ -326,11 +322,11 @@
     </main>
 
     <!-- Info Help Modal -->
-    <div id="info-modal"
+    <div id="info-modal" onclick="handleModalBackdropClick(event)"
         class="fixed inset-0 bg-brand-950/40 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-        <div
+        <div id="info-modal-card"
             class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-emerald-100 relative animate-in fade-in zoom-in-95 duration-150">
-            <button onclick="toggleInfoModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 p-1">
+            <button onclick="toggleInfoModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 p-1" title="ปิด">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
             <div class="flex items-center space-x-3 mb-4">
@@ -345,19 +341,19 @@
             <div class="space-y-3 text-sm text-slate-600">
                 <div class="flex items-start space-x-2.5">
                     <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
-                    <p><strong>บันทึกรายการโปรด:</strong> คลิกไอคอนดาว <i data-lucide="star"
-                            class="w-3.5 h-3.5 inline text-slate-400"></i> ในระบบที่ใช้งานบ่อย
-                        เพื่อปักหมุดไว้ที่ส่วนบนสุด</p>
+                    <p><strong>บันทึกรายการโปรด:</strong> คลิกไอคอนดาว <i data-lucide="star" class="w-3.5 h-3.5 inline text-slate-400"></i> ในระบบที่ใช้งานบ่อย เพื่อปักหมุดไว้ที่ส่วนบนสุด</p>
                 </div>
                 <div class="flex items-start space-x-2.5">
                     <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
-                    <p><strong>คัดลอกลิงก์:</strong> กดปุ่มไอคอนคัดลอก <i data-lucide="copy"
-                            class="w-3.5 h-3.5 inline text-slate-400"></i> เพื่อส่งต่อ URL ให้กับเพื่อนร่วมงาน</p>
+                    <p><strong>คัดลอกลิงก์:</strong> กดปุ่มไอคอนคัดลอก <i data-lucide="copy" class="w-3.5 h-3.5 inline text-slate-400"></i> เพื่อส่งต่อ URL ให้กับเพื่อนร่วมงาน</p>
                 </div>
                 <div class="flex items-start space-x-2.5">
                     <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
-                    <p><strong>การค้นหาแบบรวดเร็ว:</strong> ใช้ช่องค้นหาเพื่อค้นหาจากชื่อระบบ หรือหน้าที่ของระบบได้ทันที
-                    </p>
+                    <p><strong>การค้นหาแบบรวดเร็ว:</strong> ใช้ช่องค้นหาเพื่อค้นหาจากชื่อระบบ, คำย่อ (เช่น RP, AR, TS, QC) หรือหน้าที่ของระบบได้ทันที</p>
+                </div>
+                <div class="flex items-start space-x-2.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
+                    <p><strong>สลับมุมมอง:</strong> สามารถกดปุ่มสลับระหว่างมุมมองการ์ด (Grid) และมุมมองตาราง (List) ได้ที่มุมบนขวา</p>
                 </div>
             </div>
             <button onclick="toggleInfoModal()"
@@ -369,8 +365,7 @@
 
     <!-- Footer -->
     <footer class="bg-white border-t border-emerald-100 mt-auto py-6">
-        <div
-            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
             <div class="flex items-center space-x-2">
                 <div class="w-2 h-2 rounded-full bg-brand-500"></div>
                 <p class="font-medium">© ME RICH TWENTY FOUR CO.,LTD. All rights reserved.</p>
@@ -510,6 +505,18 @@
             updateTime();
             setInterval(updateTime, 1000);
             lucide.createIcons();
+
+            // Keyboard shortcut for Esc
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const modal = document.getElementById('info-modal');
+                    if (!modal.classList.contains('hidden')) {
+                        toggleInfoModal();
+                    } else if (searchQuery.length > 0) {
+                        clearSearch();
+                    }
+                }
+            });
         });
 
         // Realtime Clock
@@ -527,9 +534,17 @@
             const container = document.getElementById('category-tabs');
             container.innerHTML = categories.map(cat => {
                 const isActive = currentCategory === cat.id;
+                const count = cat.id === 'all' 
+                    ? systemsData.length 
+                    : systemsData.filter(s => s.catKey === cat.id).length;
+
                 const activeClass = isActive
                     ? 'bg-brand-700 text-white shadow-md shadow-brand-900/10 font-semibold'
                     : 'bg-white text-slate-600 hover:bg-brand-50 border border-emerald-200/80 font-medium';
+
+                const badgeClass = isActive
+                    ? 'bg-brand-800/80 text-brand-100'
+                    : 'bg-slate-100 text-slate-500';
 
                 return `
                     <button 
@@ -537,6 +552,7 @@
                         class="px-4 py-2 rounded-xl text-xs sm:text-sm whitespace-nowrap transition flex items-center space-x-2 shrink-0 ${activeClass}">
                         <i data-lucide="${cat.icon}" class="w-4 h-4"></i>
                         <span>${cat.label}</span>
+                        <span class="text-[10px] px-1.5 py-0.5 rounded-full ${badgeClass}">${count}</span>
                     </button>
                 `;
             }).join('');
@@ -565,10 +581,18 @@
             renderSystems();
         }
 
+        function handleSearchKey(event) {
+            if (event.key === 'Escape') {
+                clearSearch();
+            }
+        }
+
         // Clear Search Text
         function clearSearch() {
-            document.getElementById('search-input').value = '';
+            const input = document.getElementById('search-input');
+            input.value = '';
             handleSearch();
+            input.focus();
         }
 
         // Reset Filters
@@ -611,21 +635,37 @@
             renderSystems();
         }
 
-        // Copy URL to Clipboard
+        // Robust Copy URL to Clipboard
         function copyToClipboard(url, event) {
             if (event) event.stopPropagation();
 
-            const el = document.createElement('textarea');
-            el.value = url;
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
+            const successCallback = () => showToast('คัดลอกลิงก์ไปยังคลิปบอร์ดแล้ว');
+            const fallbackCopy = () => {
+                const el = document.createElement('textarea');
+                el.value = url;
+                el.setAttribute('readonly', '');
+                el.style.position = 'absolute';
+                el.style.left = '-9999px';
+                document.body.appendChild(el);
+                el.select();
+                try {
+                    document.execCommand('copy');
+                    successCallback();
+                } catch (e) {
+                    showToast('ไม่สามารถคัดลอกลิงก์ได้');
+                }
+                document.body.removeChild(el);
+            };
 
-            showToast('คัดลอกลิงก์ไปยังคลิปบอร์ดแล้ว');
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(url).then(successCallback).catch(fallbackCopy);
+            } else {
+                fallbackCopy();
+            }
         }
 
         // Show Toast Dialog
+        let toastTimeout = null;
         function showToast(msg) {
             const toast = document.getElementById('toast');
             const toastMsg = document.getElementById('toast-message');
@@ -634,7 +674,8 @@
             toast.classList.remove('translate-y-24', 'opacity-0');
             toast.classList.add('translate-y-0', 'opacity-100');
 
-            setTimeout(() => {
+            if (toastTimeout) clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
                 toast.classList.remove('translate-y-0', 'opacity-100');
                 toast.classList.add('translate-y-24', 'opacity-0');
             }, 2500);
@@ -644,9 +685,13 @@
         function getFilteredSystems() {
             return systemsData.filter(sys => {
                 const matchesCategory = currentCategory === 'all' || sys.catKey === currentCategory;
-                const matchesSearch = sys.name.toLowerCase().includes(searchQuery) ||
-                    sys.description.toLowerCase().includes(searchQuery) ||
-                    sys.category.toLowerCase().includes(searchQuery);
+                const q = searchQuery.toLowerCase();
+                const matchesSearch = !q ||
+                    sys.name.toLowerCase().includes(q) ||
+                    sys.description.toLowerCase().includes(q) ||
+                    sys.category.toLowerCase().includes(q) ||
+                    sys.id.toLowerCase().includes(q) ||
+                    sys.url.toLowerCase().includes(q);
                 return matchesCategory && matchesSearch;
             });
         }
@@ -698,6 +743,7 @@
         function createCardHTML(item, isFavSection) {
             const isFav = favorites.includes(item.id);
             const pinColor = isFav ? 'text-amber-500 fill-amber-500' : 'text-slate-300 hover:text-amber-500';
+            const pinTitle = isFav ? 'ยกเลิกการปักหมุด' : 'ปักหมุดไว้ที่ส่วนบน';
 
             // List View Render
             if (viewMode === 'list' && !isFavSection) {
@@ -719,7 +765,7 @@
                         </div>
 
                         <div class="flex items-center space-x-2 w-full sm:w-auto justify-end border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-100 shrink-0">
-                            <button onclick="toggleFavorite('${item.id}', event)" class="p-2 rounded-lg hover:bg-slate-100 transition" title="ปักหมุด">
+                            <button onclick="toggleFavorite('${item.id}', event)" class="p-2 rounded-lg hover:bg-slate-100 transition" title="${pinTitle}">
                                 <i data-lucide="star" class="w-4 h-4 ${pinColor}"></i>
                             </button>
                             <button onclick="copyToClipboard('${item.url}', event)" class="p-2 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition" title="คัดลอกลิงก์">
@@ -745,7 +791,7 @@
                                 <i data-lucide="${item.icon}" class="w-6 h-6"></i>
                             </div>
                             <div class="flex items-center space-x-1">
-                                <button onclick="toggleFavorite('${item.id}', event)" class="p-1.5 rounded-lg hover:bg-slate-100 transition" title="ปักหมุดไว้ที่ส่วนบน">
+                                <button onclick="toggleFavorite('${item.id}', event)" class="p-1.5 rounded-lg hover:bg-slate-100 transition" title="${pinTitle}">
                                     <i data-lucide="star" class="w-4 h-4 ${pinColor}"></i>
                                 </button>
                                 <button onclick="copyToClipboard('${item.url}', event)" class="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition" title="คัดลอกลิงก์">
@@ -761,7 +807,9 @@
 
                         <!-- Name & Description -->
                         <h4 class="font-bold text-slate-900 text-base mb-1.5 font-heading group-hover:text-brand-700 transition">
-                            ${item.name}
+                            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="hover:underline">
+                                ${item.name}
+                            </a>
                         </h4>
                         <p class="text-xs text-slate-500 leading-relaxed line-clamp-2 mb-4">
                             ${item.description}
@@ -780,10 +828,18 @@
             `;
         }
 
-        // Toggle Modal
+        // Modal Helpers
         function toggleInfoModal() {
             const modal = document.getElementById('info-modal');
             modal.classList.toggle('hidden');
+        }
+
+        function handleModalBackdropClick(event) {
+            const modal = document.getElementById('info-modal');
+            const card = document.getElementById('info-modal-card');
+            if (event.target === modal) {
+                modal.classList.add('hidden');
+            }
         }
     </script>
 </body>

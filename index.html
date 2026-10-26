@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="th" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ME RICH TWENTY FOUR - Corporate Intranet Portal</title>
+    <meta name="description" content="ME RICH TWENTY FOUR Corporate Intranet Portal - ศูนย์รวมระบบงานสารสนเทศ คลังสินค้า การผลิต บัญชี และฝ่ายขาย สำหรับบุคลากรภายในองค์กร บริษัท มี ริช ทเวนตี้โฟร์ จำกัด">
+    <meta property="og:title" content="ME RICH TWENTY FOUR - Corporate Intranet Portal">
+    <meta property="og:description" content="ศูนย์รวมระบบงานสำหรับพนักงานภายในองค์กร บริษัท มี ริช ทเวนตี้โฟร์ จำกัด">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon (SVG Brand Logo) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 320'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='100%25' x2='0%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%2314532d'/%3E%3Cstop offset='100%25' stop-color='%2322c55e'/%3E%3C/linearGradient%3E%3ClinearGradient id='g2' x1='0%25' y1='100%25' x2='0%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23166534'/%3E%3Cstop offset='100%25' stop-color='%234ade80'/%3E%3C/linearGradient%3E%3ClinearGradient id='g3' x1='0%25' y1='100%25' x2='0%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%2315803d'/%3E%3Cstop offset='100%25' stop-color='%2386efac'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='40,280 160,30 200,30 80,280' fill='url(%23g1)'/%3E%3Cpolygon points='90,280 210,30 250,30 130,280' fill='url(%23g2)'/%3E%3Cpolygon points='200,280 250,160 290,160 240,280' fill='url(%23g1)'/%3E%3Cpolygon points='140,280 290,30 360,280 310,280 270,190 230,280' fill='url(%23g3)'/%3E%3C/svg%3E">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Sarabun & Prompt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Sarabun', 'Prompt', 'sans-serif'],
+                        heading: ['Prompt', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                            950: '#052e16',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f6f8f6;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-family: 'Prompt', sans-serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #a7f3d0;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #34d399;
+        }
+
+        .green-gradient-bg {
+            background: linear-gradient(135deg, #052e16 0%, #14532d 40%, #15803d 100%);
+        }
+
+        .green-card-hover {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .green-card-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px -6px rgba(22, 101, 52, 0.14);
+        }
+
+        /* Hide scrollbar for tabs */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="h-full text-slate-800 antialiased bg-slate-100/60 flex flex-col min-h-screen">
+
+    <!-- Notification Toast -->
+    <div id="toast"
+        class="fixed bottom-6 right-6 transform translate-y-24 opacity-0 transition-all duration-300 z-50 bg-brand-950 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center space-x-3 border border-brand-700/50 pointer-events-none">
+        <div class="w-8 h-8 bg-brand-500/20 rounded-xl flex items-center justify-center shrink-0 text-brand-400">
+            <i data-lucide="check-circle" class="w-5 h-5"></i>
+        </div>
+        <div>
+            <p id="toast-title" class="text-xs text-brand-300 font-medium">สำเร็จ</p>
+            <p id="toast-message" class="text-sm font-semibold">คัดลอกลิงก์เรียบร้อยแล้ว</p>
+        </div>
+    </div>
+
+    <!-- Top Navigation Header -->
+    <header class="bg-white/95 backdrop-blur-md border-b border-emerald-100 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+            <!-- Company Logo & Brand Name -->
+            <div class="flex items-center space-x-3 sm:space-x-4">
+                <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-1 shadow-md shadow-brand-900/5 border border-emerald-100 shrink-0">
+                    <svg viewBox="0 0 400 320" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="100%" x2="0%" y2="0%">
+                                <stop offset="0%" style="stop-color:#14532d;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#22c55e;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="grad2" x1="0%" y1="100%" x2="0%" y2="0%">
+                                <stop offset="0%" style="stop-color:#166534;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#4ade80;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="grad3" x1="0%" y1="100%" x2="0%" y2="0%">
+                                <stop offset="0%" style="stop-color:#15803d;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#86efac;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="40,280 160,30 200,30 80,280" fill="url(#grad1)" />
+                        <polygon points="90,280 210,30 250,30 130,280" fill="url(#grad2)" />
+                        <polygon points="200,280 250,160 290,160 240,280" fill="url(#grad1)" />
+                        <polygon points="140,280 290,30 360,280 310,280 270,190 230,280" fill="url(#grad3)" />
+                    </svg>
+                </div>
+                <div class="border-l border-emerald-200/60 pl-3 sm:pl-4">
+                    <h1 class="text-base sm:text-lg font-bold text-brand-950 leading-tight font-heading">
+                        ME RICH TWENTY FOUR CO., LTD.
+                    </h1>
+                    <p class="text-xs text-brand-700 font-medium">บริษัท มี ริช ทเวนตี้โฟร์ จำกัด • Internal Web Portal</p>
+                </div>
+            </div>
+
+            <!-- Header Info & Tools -->
+            <div class="flex items-center space-x-3">
+                <div class="hidden md:flex flex-col items-end pr-4 border-r border-emerald-100 text-right">
+                    <span id="current-time" class="text-sm font-bold text-brand-900 font-heading">00:00:00</span>
+                    <span id="current-date" class="text-xs text-slate-500">--/--/----</span>
+                </div>
+                <button onclick="toggleInfoModal()"
+                    class="p-2.5 text-brand-700 hover:text-brand-900 hover:bg-brand-50 rounded-xl transition"
+                    title="คู่มือการใช้งาน">
+                    <i data-lucide="help-circle" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Company Banner -->
+        <div class="relative overflow-hidden rounded-3xl green-gradient-bg text-white p-6 sm:p-10 mb-8 shadow-xl shadow-brand-900/10 border border-brand-800/40">
+            <!-- Decorative Vector Elements -->
+            <div class="absolute right-0 bottom-0 opacity-10 translate-x-12 translate-y-12 pointer-events-none">
+                <svg width="380" height="300" viewBox="0 0 400 320" fill="white">
+                    <polygon points="40,280 160,30 200,30 80,280" />
+                    <polygon points="90,280 210,30 250,30 130,280" />
+                    <polygon points="140,280 290,30 360,280 310,280 270,190 230,280" />
+                </svg>
+            </div>
+
+            <div class="relative z-10 max-w-3xl">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white/15 text-brand-200 backdrop-blur-md mb-3 border border-white/10">
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5 mr-1.5 text-brand-300"></i>
+                    ศูนย์รวมระบบงานสำหรับพนักงานภายในองค์กร
+                </span>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold font-heading mb-3 text-white leading-snug">
+                    ระบบบริหารจัดการงาน บริษัท มี ริช ทเวนตี้โฟร์
+                </h2>
+                <p class="text-brand-100 text-sm sm:text-base font-light leading-relaxed max-w-2xl">
+                    รวบรวมทางเข้าสู่ระบบสารสนเทศ คลังสินค้า การผลิต และฝ่ายขายไว้ในจุดเดียว เพื่อความสะดวก รวดเร็ว
+                    และเป็นระบบ ปักหมุดรายการที่ใช้งานประจำเพื่อการใช้งานที่สะดวกยิ่งขึ้น
+                </p>
+            </div>
+        </div>
+
+        <!-- System Stats Quick Glance -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8">
+            <div class="bg-white p-4 rounded-2xl border border-emerald-100/80 shadow-sm flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+                    <i data-lucide="grid" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-500 font-medium">ระบบทั้งหมด</p>
+                    <p class="text-lg font-bold text-brand-950 font-heading">10 <span class="text-xs font-normal text-slate-500">ระบบ</span></p>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl border border-emerald-100/80 shadow-sm flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                    <i data-lucide="star" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-500 font-medium">รายการโปรด</p>
+                    <p id="stat-fav-count" class="text-lg font-bold text-brand-950 font-heading">0 <span class="text-xs font-normal text-slate-500">รายการ</span></p>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl border border-emerald-100/80 shadow-sm flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                    <i data-lucide="layers" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-500 font-medium">หมวดหมู่</p>
+                    <p class="text-lg font-bold text-brand-950 font-heading">4 <span class="text-xs font-normal text-slate-500">หมวด</span></p>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl border border-emerald-100/80 shadow-sm flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center shrink-0">
+                    <i data-lucide="lock" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-500 font-medium">ความปลอดภัย</p>
+                    <p class="text-sm font-bold text-emerald-700 font-heading">Internal Network</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter & Search Controls Bar -->
+        <div class="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center mb-6">
+
+            <!-- Category Filter Tabs -->
+            <div class="flex items-center space-x-1.5 overflow-x-auto pb-2 md:pb-0 no-scrollbar" id="category-tabs">
+                <!-- Dynamically Inserted -->
+            </div>
+
+            <!-- Search Box & View Switcher -->
+            <div class="flex items-center gap-2.5">
+                <!-- Search Input -->
+                <div class="relative flex-1 sm:w-72">
+                    <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="search-input" placeholder="ค้นหาระบบงาน, คำอธิบาย..."
+                        class="w-full pl-10 pr-9 py-2.5 bg-white border border-emerald-200/80 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 shadow-sm transition"
+                        oninput="handleSearch()" onkeydown="handleSearchKey(event)">
+                    <button id="clear-search" onclick="clearSearch()"
+                        class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Toggle Grid / List View -->
+                <div class="flex bg-slate-200/80 p-1 rounded-xl border border-slate-200 shrink-0">
+                    <button id="view-grid-btn" onclick="setViewMode('grid')"
+                        class="p-2 rounded-lg text-brand-950 bg-white shadow-sm transition" title="มุมมองการ์ด">
+                        <i data-lucide="grid" class="w-4 h-4"></i>
+                    </button>
+                    <button id="view-list-btn" onclick="setViewMode('list')"
+                        class="p-2 rounded-lg text-slate-500 hover:text-slate-800 transition" title="มุมมองตาราง">
+                        <i data-lucide="list" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pinned / Favorites Section -->
+        <div id="favorites-container" class="mb-8 hidden">
+            <div class="flex items-center space-x-2 mb-4">
+                <i data-lucide="star" class="w-4 h-4 text-amber-500 fill-amber-500"></i>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-600 font-heading">
+                    ระบบที่ปักหมุดไว้ (Favorites)
+                </h3>
+            </div>
+            <div id="favorites-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Dynamically Populated Favorites -->
+            </div>
+        </div>
+
+        <!-- Main Links Grid/List Container -->
+        <div>
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="layout-list" class="w-4 h-4 text-brand-700"></i>
+                    <h3 id="section-title" class="text-xs font-bold uppercase tracking-wider text-slate-600 font-heading">
+                        รายการระบบงานทั้งหมด
+                    </h3>
+                </div>
+                <span id="system-count" class="text-xs bg-brand-100 text-brand-800 px-3 py-1 rounded-full font-semibold">10 รายการ</span>
+            </div>
+
+            <!-- Empty State Search Result -->
+            <div id="empty-state" class="hidden text-center py-16 bg-white rounded-3xl border border-dashed border-slate-300 my-4 shadow-sm">
+                <div class="w-16 h-16 bg-brand-50 rounded-2xl flex items-center justify-center mx-auto mb-4 text-brand-600">
+                    <i data-lucide="search-x" class="w-8 h-8"></i>
+                </div>
+                <h4 class="text-base font-bold text-slate-800 font-heading">ไม่พบข้อมูลระบบงานที่คุณค้นหา</h4>
+                <p class="text-sm text-slate-500 mt-1">กรุณาตรวจสอบการพิมพ์คำค้นหา หรือเลือกหมวดหมู่อื่น</p>
+                <button onclick="resetFilters()"
+                    class="mt-4 px-4 py-2 bg-brand-700 text-white rounded-xl text-sm font-medium hover:bg-brand-800 transition shadow-sm">
+                    แสดงระบบงานทั้งหมด
+                </button>
+            </div>
+
+            <!-- Links Grid Container -->
+            <div id="links-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Dynamically Generated System Cards -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Info Help Modal -->
+    <div id="info-modal" onclick="handleModalBackdropClick(event)"
+        class="fixed inset-0 bg-brand-950/40 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div id="info-modal-card"
+            class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-emerald-100 relative animate-in fade-in zoom-in-95 duration-150">
+            <button onclick="toggleInfoModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 p-1" title="ปิด">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="flex items-center space-x-3 mb-4">
+                <div class="w-10 h-10 bg-brand-100 text-brand-800 rounded-xl flex items-center justify-center shrink-0">
+                    <i data-lucide="info" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 font-heading">แนะนำการใช้งาน</h3>
+                    <p class="text-xs text-slate-500">ME RICH TWENTY FOUR Portal Guide</p>
+                </div>
+            </div>
+            <div class="space-y-3 text-sm text-slate-600">
+                <div class="flex items-start space-x-2.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
+                    <p><strong>บันทึกรายการโปรด:</strong> คลิกไอคอนดาว <i data-lucide="star" class="w-3.5 h-3.5 inline text-slate-400"></i> ในระบบที่ใช้งานบ่อย เพื่อปักหมุดไว้ที่ส่วนบนสุด</p>
+                </div>
+                <div class="flex items-start space-x-2.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
+                    <p><strong>คัดลอกลิงก์:</strong> กดปุ่มไอคอนคัดลอก <i data-lucide="copy" class="w-3.5 h-3.5 inline text-slate-400"></i> เพื่อส่งต่อ URL ให้กับเพื่อนร่วมงาน</p>
+                </div>
+                <div class="flex items-start space-x-2.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
+                    <p><strong>การค้นหาแบบรวดเร็ว:</strong> ใช้ช่องค้นหาเพื่อค้นหาจากชื่อระบบ, คำย่อ (เช่น RP, AR, TS, QC) หรือหน้าที่ของระบบได้ทันที</p>
+                </div>
+                <div class="flex items-start space-x-2.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
+                    <p><strong>สลับมุมมอง:</strong> สามารถกดปุ่มสลับระหว่างมุมมองการ์ด (Grid) และมุมมองตาราง (List) ได้ที่มุมบนขวา</p>
+                </div>
+            </div>
+            <button onclick="toggleInfoModal()"
+                class="mt-6 w-full py-2.5 bg-brand-800 text-white rounded-xl text-sm font-semibold hover:bg-brand-900 transition">
+                เข้าใจแล้ว
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-emerald-100 mt-auto py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+            <div class="flex items-center space-x-2">
+                <div class="w-2 h-2 rounded-full bg-brand-500"></div>
+                <p class="font-medium">© ME RICH TWENTY FOUR CO.,LTD. All rights reserved.</p>
+            </div>
+            <p class="flex items-center gap-1.5 text-slate-400">
+                <i data-lucide="shield-check" class="w-4 h-4 text-brand-600"></i>
+                สงวนสิทธิ์การใช้งานสำหรับบุคลากรภายในบริษัท มี ริช ทเวนตี้โฟร์ จำกัด เท่านั้น
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Business Logic -->
+    <script>
+        // System Data Source (10 Systems)
+        const systemsData = [
+            {
+                id: 'rp-system',
+                name: 'เว็บ RP (แจ้งซ่อมออนไลน์)',
+                category: 'IT & แจ้งซ่อม',
+                catKey: 'it',
+                url: 'https://booking.merich24.com/rp/index.php',
+                description: 'ระบบแจ้งซ่อมอุปกรณ์ ปัญหาเทคนิค และแจ้งปัญหาระบบงานออนไลน์',
+                icon: 'wrench',
+                badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-200'
+            },
+            {
+                id: 'nexrich-sale',
+                name: 'NEXRICH (Sale Support)',
+                category: 'ฝ่ายขาย & วางแผน',
+                catKey: 'sales',
+                url: 'https://booking.merich24.com/salesupport/',
+                description: 'ระบบสนับสนุนฝ่ายขาย ค้นหาข้อมูลสินค้า เอกสารการขาย และการประสานงาน',
+                icon: 'trending-up',
+                badgeColor: 'bg-green-50 text-green-800 border-green-200'
+            },
+            {
+                id: 'wh-packing',
+                name: 'WH Packing (การแพ็คสินค้า)',
+                category: 'คลังสินค้า & QC',
+                catKey: 'warehouse',
+                url: 'https://booking.merich24.com/wh/packing.html',
+                description: 'ระบบคลังสินค้า การแพ็คสินค้า บรรจุภัณฑ์ และการจัดเตรียมสินค้า',
+                icon: 'package-check',
+                badgeColor: 'bg-teal-50 text-teal-800 border-teal-200'
+            },
+            {
+                id: 'planning-sys',
+                name: 'Planning (การวางแผน)',
+                category: 'ฝ่ายขาย & วางแผน',
+                catKey: 'sales',
+                url: 'https://booking.merich24.com/planning/',
+                description: 'ระบบวางแผนการผลิต ตารางเวลาการทำงาน และการจัดสรรทรัพยากร',
+                icon: 'calendar-range',
+                badgeColor: 'bg-green-50 text-green-800 border-green-200'
+            },
+            {
+                id: 'ar-system',
+                name: 'เว็บ AR (บัญชีลูกหนี้)',
+                category: 'บัญชี & การเงิน',
+                catKey: 'finance',
+                url: 'https://booking.merich24.com/ar/',
+                description: 'ระบบบัญชีลูกหนี้ (Accounts Receivable) ตรวจสอบยอดชำระและสถานะทางการเงิน',
+                icon: 'receipt',
+                badgeColor: 'bg-lime-50 text-lime-800 border-lime-200'
+            },
+            {
+                id: 'it-permission',
+                name: 'IT Request (ขอสิทธิ์ใช้งาน)',
+                category: 'IT & แจ้งซ่อม',
+                catKey: 'it',
+                url: 'https://booking.merich24.com/it/',
+                description: 'ระบบยื่นคำขอสิทธิ์การใช้งานระบบสารสนเทศ บัญชีผู้ใช้ และสิทธิ์การเข้าถึง',
+                icon: 'user-check',
+                badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-200'
+            },
+            {
+                id: 'outbound-delivery',
+                name: 'Outbound Delivery (ตรวจออเดอร์)',
+                category: 'คลังสินค้า & QC',
+                catKey: 'warehouse',
+                url: 'https://booking.merich24.com/wh/ordercheck/',
+                description: 'ระบบตรวจสอบคำสั่งซื้อส่งออก ตรวจเช็คความถูกต้องก่อนส่งมอบสินค้า',
+                icon: 'truck',
+                badgeColor: 'bg-teal-50 text-teal-800 border-teal-200'
+            },
+            {
+                id: 'kanban-ts',
+                name: 'เว็บ TS (คัมบัง / Kanban)',
+                category: 'ฝ่ายขาย & วางแผน',
+                catKey: 'sales',
+                url: 'https://booking.merich24.com/ts/',
+                description: 'ระบบจัดการลำดับงานคัมบัง (Kanban System) ควบคุมการไหลของงานส่งมอบ',
+                icon: 'kanban',
+                badgeColor: 'bg-green-50 text-green-800 border-green-200'
+            },
+            {
+                id: 'it-report',
+                name: 'แผนก IT (Headteam Report)',
+                category: 'IT & แจ้งซ่อม',
+                catKey: 'it',
+                url: 'https://booking.merich24.com/me24-headteam-report/public/index.php',
+                description: 'รายงานสรุปผลงานแผนก IT สถิติ และแดชบอร์ดสำหรับผู้บริหาร',
+                icon: 'bar-chart-3',
+                badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-200'
+            },
+            {
+                id: 'qc-cookie',
+                name: 'เว็บ QC (ตรวจสอบคุกกี้)',
+                category: 'คลังสินค้า & QC',
+                catKey: 'warehouse',
+                url: 'https://booking.merich24.com/qc',
+                description: 'ระบบควบคุมและตรวจสอบคุณภาพสินค้า (Quality Control) ตรวจสอบสเปกคุกกี้',
+                icon: 'check-circle-2',
+                badgeColor: 'bg-teal-50 text-teal-800 border-teal-200'
+            }
+        ];
+
+        // Categories Configurations
+        const categories = [
+            { id: 'all', label: 'ทั้งหมด', icon: 'layout-grid' },
+            { id: 'it', label: 'IT & แจ้งซ่อม', icon: 'laptop' },
+            { id: 'sales', label: 'ฝ่ายขาย & วางแผน', icon: 'trending-up' },
+            { id: 'warehouse', label: 'คลังสินค้า & QC', icon: 'package' },
+            { id: 'finance', label: 'บัญชี & การเงิน', icon: 'file-text' }
+        ];
+
+        // Application State
+        let currentCategory = 'all';
+        let searchQuery = '';
+        let viewMode = 'grid'; // 'grid' or 'list'
+        let favorites = JSON.parse(localStorage.getItem('m24_green_favs') || '[]');
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCategories();
+            renderSystems();
+            updateTime();
+            setInterval(updateTime, 1000);
+            lucide.createIcons();
+
+            // Keyboard shortcut for Esc
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const modal = document.getElementById('info-modal');
+                    if (!modal.classList.contains('hidden')) {
+                        toggleInfoModal();
+                    } else if (searchQuery.length > 0) {
+                        clearSearch();
+                    }
+                }
+            });
+        });
+
+        // Realtime Clock
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('th-TH', { hour12: false });
+            const dateStr = now.toLocaleDateString('th-TH', { year: 'numeric', month: 'short', day: 'numeric', weekday: 'short' });
+
+            document.getElementById('current-time').innerText = timeStr;
+            document.getElementById('current-date').innerText = dateStr;
+        }
+
+        // Render Category Filter Buttons
+        function renderCategories() {
+            const container = document.getElementById('category-tabs');
+            container.innerHTML = categories.map(cat => {
+                const isActive = currentCategory === cat.id;
+                const count = cat.id === 'all' 
+                    ? systemsData.length 
+                    : systemsData.filter(s => s.catKey === cat.id).length;
+
+                const activeClass = isActive
+                    ? 'bg-brand-700 text-white shadow-md shadow-brand-900/10 font-semibold'
+                    : 'bg-white text-slate-600 hover:bg-brand-50 border border-emerald-200/80 font-medium';
+
+                const badgeClass = isActive
+                    ? 'bg-brand-800/80 text-brand-100'
+                    : 'bg-slate-100 text-slate-500';
+
+                return `
+                    <button 
+                        onclick="setCategory('${cat.id}')"
+                        class="px-4 py-2 rounded-xl text-xs sm:text-sm whitespace-nowrap transition flex items-center space-x-2 shrink-0 ${activeClass}">
+                        <i data-lucide="${cat.icon}" class="w-4 h-4"></i>
+                        <span>${cat.label}</span>
+                        <span class="text-[10px] px-1.5 py-0.5 rounded-full ${badgeClass}">${count}</span>
+                    </button>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        // Filter Category Handler
+        function setCategory(catId) {
+            currentCategory = catId;
+            renderCategories();
+            renderSystems();
+        }
+
+        // Search Handler
+        function handleSearch() {
+            const input = document.getElementById('search-input');
+            const clearBtn = document.getElementById('clear-search');
+            searchQuery = input.value.trim().toLowerCase();
+
+            if (searchQuery.length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+
+            renderSystems();
+        }
+
+        function handleSearchKey(event) {
+            if (event.key === 'Escape') {
+                clearSearch();
+            }
+        }
+
+        // Clear Search Text
+        function clearSearch() {
+            const input = document.getElementById('search-input');
+            input.value = '';
+            handleSearch();
+            input.focus();
+        }
+
+        // Reset Filters
+        function resetFilters() {
+            currentCategory = 'all';
+            clearSearch();
+            renderCategories();
+        }
+
+        // Toggle Favorite Status
+        function toggleFavorite(id, event) {
+            if (event) event.stopPropagation();
+
+            if (favorites.includes(id)) {
+                favorites = favorites.filter(favId => favId !== id);
+                showToast('ยกเลิกการปักหมุดแล้ว');
+            } else {
+                favorites.push(id);
+                showToast('ปักหมุดในรายการโปรดเรียบร้อย');
+            }
+
+            localStorage.setItem('m24_green_favs', JSON.stringify(favorites));
+            renderSystems();
+        }
+
+        // Switch Grid/List View Mode
+        function setViewMode(mode) {
+            viewMode = mode;
+            const gridBtn = document.getElementById('view-grid-btn');
+            const listBtn = document.getElementById('view-list-btn');
+
+            if (mode === 'grid') {
+                gridBtn.className = 'p-2 rounded-lg text-brand-950 bg-white shadow-sm transition';
+                listBtn.className = 'p-2 rounded-lg text-slate-500 hover:text-slate-800 transition';
+            } else {
+                listBtn.className = 'p-2 rounded-lg text-brand-950 bg-white shadow-sm transition';
+                gridBtn.className = 'p-2 rounded-lg text-slate-500 hover:text-slate-800 transition';
+            }
+
+            renderSystems();
+        }
+
+        // Robust Copy URL to Clipboard
+        function copyToClipboard(url, event) {
+            if (event) event.stopPropagation();
+
+            const successCallback = () => showToast('คัดลอกลิงก์ไปยังคลิปบอร์ดแล้ว');
+            const fallbackCopy = () => {
+                const el = document.createElement('textarea');
+                el.value = url;
+                el.setAttribute('readonly', '');
+                el.style.position = 'absolute';
+                el.style.left = '-9999px';
+                document.body.appendChild(el);
+                el.select();
+                try {
+                    document.execCommand('copy');
+                    successCallback();
+                } catch (e) {
+                    showToast('ไม่สามารถคัดลอกลิงก์ได้');
+                }
+                document.body.removeChild(el);
+            };
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(url).then(successCallback).catch(fallbackCopy);
+            } else {
+                fallbackCopy();
+            }
+        }
+
+        // Show Toast Dialog
+        let toastTimeout = null;
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = msg;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            if (toastTimeout) clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 2500);
+        }
+
+        // Filter Logic
+        function getFilteredSystems() {
+            return systemsData.filter(sys => {
+                const matchesCategory = currentCategory === 'all' || sys.catKey === currentCategory;
+                const q = searchQuery.toLowerCase();
+                const matchesSearch = !q ||
+                    sys.name.toLowerCase().includes(q) ||
+                    sys.description.toLowerCase().includes(q) ||
+                    sys.category.toLowerCase().includes(q) ||
+                    sys.id.toLowerCase().includes(q) ||
+                    sys.url.toLowerCase().includes(q);
+                return matchesCategory && matchesSearch;
+            });
+        }
+
+        // Render Systems List
+        function renderSystems() {
+            const filtered = getFilteredSystems();
+            const container = document.getElementById('links-container');
+            const favContainer = document.getElementById('favorites-container');
+            const favGrid = document.getElementById('favorites-grid');
+            const emptyState = document.getElementById('empty-state');
+            const systemCount = document.getElementById('system-count');
+            const statFavCount = document.getElementById('stat-fav-count');
+
+            systemCount.innerText = `${filtered.length} รายการ`;
+            statFavCount.innerHTML = `${favorites.length} <span class="text-xs font-normal text-slate-500">รายการ</span>`;
+
+            // Empty state handle
+            if (filtered.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            // Render Favorites Pinned Block
+            const favoriteItems = systemsData.filter(s => favorites.includes(s.id));
+            if (favoriteItems.length > 0 && searchQuery === '' && currentCategory === 'all') {
+                favContainer.classList.remove('hidden');
+                favGrid.innerHTML = favoriteItems.map(item => createCardHTML(item, true)).join('');
+            } else {
+                favContainer.classList.add('hidden');
+            }
+
+            // View Mode Class Toggle
+            if (viewMode === 'grid') {
+                container.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5';
+            } else {
+                container.className = 'flex flex-col gap-3.5';
+            }
+
+            // Render Main Cards
+            container.innerHTML = filtered.map(item => createCardHTML(item, false)).join('');
+
+            lucide.createIcons();
+        }
+
+        // Card Template Generator
+        function createCardHTML(item, isFavSection) {
+            const isFav = favorites.includes(item.id);
+            const pinColor = isFav ? 'text-amber-500 fill-amber-500' : 'text-slate-300 hover:text-amber-500';
+            const pinTitle = isFav ? 'ยกเลิกการปักหมุด' : 'ปักหมุดไว้ที่ส่วนบน';
+
+            // List View Render
+            if (viewMode === 'list' && !isFavSection) {
+                return `
+                    <div class="group bg-white rounded-2xl border border-emerald-100 p-4 hover:border-brand-400 hover:shadow-md transition flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div class="flex items-center space-x-4 min-w-0">
+                            <div class="w-11 h-11 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center shrink-0 group-hover:bg-brand-600 group-hover:text-white transition duration-200">
+                                <i data-lucide="${item.icon}" class="w-5 h-5"></i>
+                            </div>
+                            <div class="min-w-0">
+                                <div class="flex items-center space-x-2">
+                                    <h4 class="font-bold text-slate-900 text-base font-heading truncate">${item.name}</h4>
+                                    <span class="text-[11px] px-2.5 py-0.5 rounded-full border font-semibold ${item.badgeColor} shrink-0">
+                                        ${item.category}
+                                    </span>
+                                </div>
+                                <p class="text-xs text-slate-500 truncate mt-0.5">${item.description}</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-2 w-full sm:w-auto justify-end border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-100 shrink-0">
+                            <button onclick="toggleFavorite('${item.id}', event)" class="p-2 rounded-lg hover:bg-slate-100 transition" title="${pinTitle}">
+                                <i data-lucide="star" class="w-4 h-4 ${pinColor}"></i>
+                            </button>
+                            <button onclick="copyToClipboard('${item.url}', event)" class="p-2 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition" title="คัดลอกลิงก์">
+                                <i data-lucide="copy" class="w-4 h-4"></i>
+                            </button>
+                            <a href="${item.url}" target="_blank" rel="noopener noreferrer" 
+                               class="px-4 py-2 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-semibold transition flex items-center space-x-1.5 shadow-sm">
+                                <span>เข้าสู่เว็บไซต์</span>
+                                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Grid View Render
+            return `
+                <div class="group bg-white rounded-2xl border border-emerald-100/90 p-5 green-card-hover flex flex-col justify-between relative shadow-sm hover:border-brand-300">
+                    <div>
+                        <!-- Header & Actions -->
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-50/80 border border-brand-100 text-brand-700 flex items-center justify-center group-hover:bg-brand-600 group-hover:text-white group-hover:border-transparent transition duration-200">
+                                <i data-lucide="${item.icon}" class="w-6 h-6"></i>
+                            </div>
+                            <div class="flex items-center space-x-1">
+                                <button onclick="toggleFavorite('${item.id}', event)" class="p-1.5 rounded-lg hover:bg-slate-100 transition" title="${pinTitle}">
+                                    <i data-lucide="star" class="w-4 h-4 ${pinColor}"></i>
+                                </button>
+                                <button onclick="copyToClipboard('${item.url}', event)" class="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition" title="คัดลอกลิงก์">
+                                    <i data-lucide="copy" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- System Category -->
+                        <span class="inline-block text-[11px] px-2.5 py-0.5 rounded-md border font-semibold ${item.badgeColor} mb-2">
+                            ${item.category}
+                        </span>
+
+                        <!-- Name & Description -->
+                        <h4 class="font-bold text-slate-900 text-base mb-1.5 font-heading group-hover:text-brand-700 transition">
+                            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="hover:underline">
+                                ${item.name}
+                            </a>
+                        </h4>
+                        <p class="text-xs text-slate-500 leading-relaxed line-clamp-2 mb-4">
+                            ${item.description}
+                        </p>
+                    </div>
+
+                    <!-- Open Button -->
+                    <div class="pt-3 border-t border-slate-100">
+                        <a href="${item.url}" target="_blank" rel="noopener noreferrer" 
+                           class="w-full py-2.5 px-4 bg-emerald-50/60 hover:bg-brand-700 text-brand-800 hover:text-white rounded-xl text-xs font-semibold transition duration-200 flex items-center justify-center space-x-2 group/btn border border-emerald-200/60 hover:border-transparent">
+                            <span>เข้าสู่เว็บระบบ</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover/btn:translate-x-1 transition"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Modal Helpers
+        function toggleInfoModal() {
+            const modal = document.getElementById('info-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function handleModalBackdropClick(event) {
+            const modal = document.getElementById('info-modal');
+            const card = document.getElementById('info-modal-card');
+            if (event.target === modal) {
+                modal.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+
+</html>
