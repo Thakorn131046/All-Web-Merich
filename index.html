@@ -213,7 +213,7 @@
                 </div>
                 <div>
                     <p class="text-xs text-slate-500 font-medium">ระบบทั้งหมด</p>
-                    <p class="text-lg font-bold text-brand-950 font-heading"><span id="stat-total-systems">11</span> <span class="text-xs font-normal text-slate-500">ระบบ</span></p>
+                    <p class="text-lg font-bold text-brand-950 font-heading"><span id="stat-total-systems">12</span> <span class="text-xs font-normal text-slate-500">ระบบ</span></p>
                 </div>
             </div>
 
@@ -306,7 +306,7 @@
                         รายการระบบงานทั้งหมด
                     </h3>
                 </div>
-                <span id="system-count" class="text-xs bg-brand-100 text-brand-800 px-3 py-1 rounded-full font-semibold">11 รายการ</span>
+                <span id="system-count" class="text-xs bg-brand-100 text-brand-800 px-3 py-1 rounded-full font-semibold">12 รายการ</span>
             </div>
 
             <!-- Empty State Search Result -->
@@ -387,7 +387,7 @@
 
     <!-- JavaScript Business Logic -->
     <script>
-        // System Data Source (11 Systems)
+        // System Data Source (12 Systems)
         const systemsData = [
             {
                 id: 'rp-system',
@@ -498,6 +498,16 @@
                 description: 'ระบบจัดการร้านค้าออนไลน์ E-commerce ERP เชื่อมต่อ Shopee, Lazada, TikTok, Line จัดการคำสั่งซื้อและสต็อกสินค้า',
                 icon: 'shopping-bag',
                 badgeColor: 'bg-green-50 text-green-800 border-green-200'
+            },
+            {
+                id: 'business-central',
+                name: 'Business Central (Dynamics 365 ERP)',
+                category: 'บัญชี & การเงิน',
+                catKey: 'finance',
+                url: 'https://businesscentral.dynamics.com/?noSignUpCheck=1',
+                description: 'ระบบ ERP จัดการบัญชี การเงิน การจัดซื้อ ซัพพลายเชน และการบริหารธุรกิจองค์กร (Microsoft Dynamics 365 Business Central)',
+                icon: 'landmark',
+                badgeColor: 'bg-lime-50 text-lime-800 border-lime-200'
             }
         ];
 

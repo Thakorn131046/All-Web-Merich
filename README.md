@@ -8,7 +8,7 @@
 
 ---
 
-## 📋 รายการระบบงานทั้งหมด (11 ระบบ)
+## 📋 รายการระบบงานทั้งหมด (12 ระบบ)
 
 | ลำดับ | ชื่อระบบงาน | หมวดหมู่ | ลิงก์ระบบ | หน้าที่หลัก |
 | :---: | :--- | :--- | :--- | :--- |
@@ -23,6 +23,7 @@
 | 9 | **แผนก IT (Headteam Report)** | IT & แจ้งซ่อม | [เข้าสู่ระบบ](https://booking.merich24.com/me24-headteam-report/public/index.php) | สรุปผลงานแผนก IT สถิติ และแดชบอร์ดสำหรับผู้บริหาร |
 | 10 | **เว็บ QC (ตรวจสอบคุกกี้)** | คลังสินค้า & QC | [เข้าสู่ระบบ](https://booking.merich24.com/qc) | ควบคุมและตรวจสอบคุณภาพสินค้า (QC) ตรวจสอบสเปกคุกกี้ |
 | 11 | **JST ERP (ระบบจัดการ E-commerce)** | ฝ่ายขาย & วางแผน | [เข้าสู่ระบบ](https://asia-web.jsterp.com/Org/Account/Login/index) | ระบบจัดการร้านค้าออนไลน์ E-commerce ERP (Shopee, Lazada, TikTok, Line) จัดการคำสั่งซื้อและสต็อกสินค้า |
+| 12 | **Business Central (Microsoft Dynamics 365 ERP)** | บัญชี & การเงิน | [เข้าสู่ระบบ](https://businesscentral.dynamics.com/?noSignUpCheck=1) | ระบบ ERP จัดการบัญชี การเงิน การจัดซื้อ ซัพพลายเชน และการบริหารธุรกิจองค์กร |
 
 ---
 
