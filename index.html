@@ -237,13 +237,25 @@
                 </div>
             </div>
 
-            <div class="bg-white p-4 rounded-2xl border border-emerald-100/80 shadow-sm flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center shrink-0">
-                    <i data-lucide="lock" class="w-5 h-5"></i>
+            <!-- BOT Hub Card (Replaces Security Card) -->
+            <div onclick="toggleBotModal()"
+                class="bg-white p-4 rounded-2xl border border-emerald-100/80 shadow-sm flex items-center justify-between cursor-pointer hover:border-violet-300 hover:shadow-md hover:-translate-y-0.5 transition duration-200 group"
+                title="คลิกเพื่อดูข้อมูล BOT ทั้งหมด">
+                <div class="flex items-center space-x-3">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center shrink-0 group-hover:bg-violet-600 group-hover:text-white transition duration-200 shadow-sm">
+                        <i data-lucide="bot" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-500 font-medium">ข้อมูล BOT ทั้งหมด</p>
+                        <p class="text-sm font-bold text-violet-700 font-heading flex items-center gap-1.5">
+                            <span>BOT HUB</span>
+                            <span class="text-[10px] font-semibold bg-violet-100 text-violet-800 px-1.5 py-0.5 rounded-md">เปิดเมนู</span>
+                        </p>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-xs text-slate-500 font-medium">ความปลอดภัย</p>
-                    <p class="text-sm font-bold text-emerald-700 font-heading">Internal Network</p>
+                <div class="text-slate-400 group-hover:text-violet-600 group-hover:translate-x-0.5 transition">
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
                 </div>
             </div>
         </div>
@@ -379,6 +391,154 @@
                 class="mt-6 w-full py-2.5 bg-brand-800 text-white rounded-xl text-sm font-semibold hover:bg-brand-900 transition">
                 เข้าใจแล้ว
             </button>
+        </div>
+    </div>
+
+    <!-- BOT Hub Modal -->
+    <div id="bot-modal" onclick="handleBotModalBackdrop(event)"
+        class="fixed inset-0 bg-brand-950/50 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div id="bot-modal-card"
+            class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-7 shadow-2xl border border-emerald-100 relative max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-150">
+            <button onclick="toggleBotModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 p-1.5 rounded-xl hover:bg-slate-100 transition"
+                title="ปิด">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Modal Header -->
+            <div class="flex items-center space-x-3.5 mb-5 shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-violet-600 to-indigo-700 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-violet-500/25 shrink-0">
+                    <i data-lucide="bot" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg text-slate-900 font-heading flex items-center gap-2">
+                        ข้อมูล BOT ทั้งหมด
+                        <span class="text-[11px] font-semibold bg-violet-100 text-violet-800 px-2.5 py-0.5 rounded-full">ME RICH BOT HUB</span>
+                    </h3>
+                    <p class="text-xs text-slate-500">รวมศูนย์ระบบบอทภายในองค์กร แบ่งตามประเภทการใช้งาน</p>
+                </div>
+            </div>
+
+            <!-- Segmented Control Tabs (BOT APP & BOT SUPPORT) -->
+            <div class="flex bg-slate-100/90 p-1 rounded-2xl border border-slate-200/80 mb-5 shrink-0">
+                <button id="bot-tab-app-btn" onclick="switchBotTab('app')"
+                    class="flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center space-x-2 bg-white text-violet-900 shadow-sm border border-slate-200/60">
+                    <i data-lucide="smartphone" class="w-4 h-4 text-violet-600"></i>
+                    <span>BOT APP</span>
+                    <span class="text-[10px] bg-violet-100 text-violet-800 px-2 py-0.5 rounded-full font-bold">แอปพลิเคชัน</span>
+                </button>
+                <button id="bot-tab-support-btn" onclick="switchBotTab('support')"
+                    class="flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center space-x-2 text-slate-600 hover:text-slate-900">
+                    <i data-lucide="headphones" class="w-4 h-4 text-emerald-600"></i>
+                    <span>BOT SUPPORT</span>
+                    <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold">แจ้งซ่อม/บริการ</span>
+                </button>
+            </div>
+
+            <!-- Scrollable Content Section -->
+            <div class="overflow-y-auto pr-1 space-y-3.5 flex-1 max-h-[60vh]">
+                <!-- Tab Content: BOT APP -->
+                <div id="bot-tab-app" class="space-y-3">
+                    <div class="bg-violet-50/60 border border-violet-100 rounded-2xl p-4 flex items-start space-x-3.5 hover:border-violet-300 transition">
+                        <div class="w-10 h-10 rounded-xl bg-violet-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                            <i data-lucide="cpu" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between gap-2 mb-1">
+                                <h4 class="font-bold text-slate-900 text-sm font-heading">MR24 Automation App Bot</h4>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-violet-100 text-violet-800 font-semibold border border-violet-200 shrink-0">BOT APP</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-3">ระบบบอทสั่งการและประมวลผลคำสั่งงานอัตโนมัติสำหรับแอปพลิเคชันภายในองค์กร</p>
+                            <div class="flex items-center space-x-2">
+                                <a href="https://booking.merich24.com/salesupport/" target="_blank" rel="noopener noreferrer"
+                                    class="px-3 py-1.5 bg-violet-600 hover:bg-violet-700 text-white rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 shadow-sm">
+                                    <span>เปิดใช้งานระบบ</span>
+                                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-violet-50/60 border border-violet-100 rounded-2xl p-4 flex items-start space-x-3.5 hover:border-violet-300 transition">
+                        <div class="w-10 h-10 rounded-xl bg-violet-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                            <i data-lucide="bell-ring" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between gap-2 mb-1">
+                                <h4 class="font-bold text-slate-900 text-sm font-heading">E-Commerce & Orders Alert Bot</h4>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-violet-100 text-violet-800 font-semibold border border-violet-200 shrink-0">BOT APP</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-3">บอทแจ้งเตือนคำสั่งซื้อ ยอดขาย และสถานะสินค้าอัตโนมัติ เชื่อมต่อกับระบบ ERP และแพลตฟอร์มออนไลน์</p>
+                            <div class="flex items-center space-x-2">
+                                <a href="https://asia-web.jsterp.com/Org/Account/Login/index" target="_blank" rel="noopener noreferrer"
+                                    class="px-3 py-1.5 bg-violet-600 hover:bg-violet-700 text-white rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 shadow-sm">
+                                    <span>เปิดระบบ E-Commerce</span>
+                                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: BOT SUPPORT -->
+                <div id="bot-tab-support" class="space-y-3 hidden">
+                    <!-- LINE MR24-HELPDESK -->
+                    <div class="bg-emerald-50/60 border border-emerald-100 rounded-2xl p-4 flex items-start space-x-3.5 hover:border-emerald-300 transition">
+                        <div class="w-10 h-10 rounded-xl bg-[#06c755] text-white flex items-center justify-center shrink-0 shadow-sm">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between gap-2 mb-1">
+                                <h4 class="font-bold text-slate-900 text-sm font-heading">LINE แจ้งซ่อม MR24-HELPDESK</h4>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-semibold border border-emerald-200 shrink-0">BOT SUPPORT</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-3">LINE Official Account แจ้งซ่อมอุปกรณ์ ปัญหาเทคนิค และติดตามสถานะงานซ่อมผ่าน LINE (LINE ID: <strong>@078hkdgk</strong>)</p>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <a href="https://line.me/R/ti/p/%40078hkdgk" target="_blank" rel="noopener noreferrer"
+                                    class="px-3 py-1.5 bg-[#06c755] hover:bg-[#05b34c] text-white rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 shadow-sm">
+                                    <span>💬 เพิ่มเพื่อน LINE</span>
+                                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                                </a>
+                                <a href="https://booking.merich24.com/rp/line-guide/" target="_blank" rel="noopener noreferrer"
+                                    class="px-3 py-1.5 bg-white border border-emerald-200 text-emerald-800 hover:bg-emerald-50 rounded-lg text-xs font-semibold transition flex items-center space-x-1.5">
+                                    <span>📖 คู่มือการใช้งาน</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IT Support & Helpdesk -->
+                    <div class="bg-emerald-50/60 border border-emerald-100 rounded-2xl p-4 flex items-start space-x-3.5 hover:border-emerald-300 transition">
+                        <div class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                            <i data-lucide="life-buoy" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between gap-2 mb-1">
+                                <h4 class="font-bold text-slate-900 text-sm font-heading">IT Request & User Support</h4>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-semibold border border-emerald-200 shrink-0">BOT SUPPORT</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-3">ช่องทางแจ้งขอสิทธิ์การใช้งานระบบ บัญชีผู้ใช้ และประสานงานทีมไอทีซัพพอร์ต</p>
+                            <div class="flex items-center space-x-2">
+                                <a href="https://booking.merich24.com/it/" target="_blank" rel="noopener noreferrer"
+                                    class="px-3 py-1.5 bg-teal-700 hover:bg-teal-800 text-white rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 shadow-sm">
+                                    <span>ยื่นคำขอสิทธิ์</span>
+                                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer note in modal -->
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                <span class="flex items-center gap-1.5 text-violet-700 font-medium">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                    ME RICH BOT Intelligence Hub
+                </span>
+                <button onclick="toggleBotModal()" class="px-4 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition">
+                    ปิดหน้าต่าง
+                </button>
+            </div>
         </div>
     </div>
 
@@ -585,8 +745,11 @@
             // Keyboard shortcut for Esc
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
+                    const botModal = document.getElementById('bot-modal');
                     const modal = document.getElementById('info-modal');
-                    if (!modal.classList.contains('hidden')) {
+                    if (botModal && !botModal.classList.contains('hidden')) {
+                        toggleBotModal();
+                    } else if (modal && !modal.classList.contains('hidden')) {
                         toggleInfoModal();
                     } else if (searchQuery.length > 0) {
                         clearSearch();
@@ -916,6 +1079,40 @@
             if (event.target === modal) {
                 modal.classList.add('hidden');
             }
+        }
+
+        // BOT Hub Modal Handlers
+        function toggleBotModal() {
+            const modal = document.getElementById('bot-modal');
+            modal.classList.toggle('hidden');
+            lucide.createIcons();
+        }
+
+        function handleBotModalBackdrop(event) {
+            const modal = document.getElementById('bot-modal');
+            if (event.target === modal) {
+                modal.classList.add('hidden');
+            }
+        }
+
+        function switchBotTab(tab) {
+            const tabAppBtn = document.getElementById('bot-tab-app-btn');
+            const tabSupportBtn = document.getElementById('bot-tab-support-btn');
+            const contentApp = document.getElementById('bot-tab-app');
+            const contentSupport = document.getElementById('bot-tab-support');
+
+            if (tab === 'app') {
+                tabAppBtn.className = 'flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center space-x-2 bg-white text-violet-900 shadow-sm border border-slate-200/60';
+                tabSupportBtn.className = 'flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center space-x-2 text-slate-600 hover:text-slate-900';
+                contentApp.classList.remove('hidden');
+                contentSupport.classList.add('hidden');
+            } else {
+                tabSupportBtn.className = 'flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center space-x-2 bg-white text-emerald-900 shadow-sm border border-slate-200/60';
+                tabAppBtn.className = 'flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center space-x-2 text-slate-600 hover:text-slate-900';
+                contentSupport.classList.remove('hidden');
+                contentApp.classList.add('hidden');
+            }
+            lucide.createIcons();
         }
     </script>
 </body>
