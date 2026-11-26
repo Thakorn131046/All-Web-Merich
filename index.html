@@ -232,7 +232,7 @@
                 </div>
                 <div>
                     <p class="text-xs text-slate-500 font-medium">หมวดหมู่</p>
-                    <p class="text-lg font-bold text-brand-950 font-heading">4 <span
+                    <p class="text-lg font-bold text-brand-950 font-heading"><span id="stat-total-categories">5</span> <span
                             class="text-xs font-normal text-slate-500">หมวด</span></p>
                 </div>
             </div>
@@ -514,28 +514,29 @@
             {
                 id: 'jst-erp',
                 name: 'JST ERP (ระบบจัดการ E-commerce)',
-                category: 'ฝ่ายขาย & วางแผน',
-                catKey: 'sales',
+                category: 'ระบบ ERP',
+                catKey: 'erp',
                 url: 'https://asia-web.jsterp.com/Org/Account/Login/index',
                 description: 'ระบบจัดการร้านค้าออนไลน์ E-commerce ERP เชื่อมต่อ Shopee, Lazada, TikTok, Line จัดการคำสั่งซื้อและสต็อกสินค้า',
                 icon: 'shopping-bag',
-                badgeColor: 'bg-green-50 text-green-800 border-green-200'
+                badgeColor: 'bg-purple-50 text-purple-800 border-purple-200'
             },
             {
                 id: 'business-central',
                 name: 'Business Central (Dynamics 365 ERP)',
-                category: 'บัญชี & การเงิน',
-                catKey: 'finance',
+                category: 'ระบบ ERP',
+                catKey: 'erp',
                 url: 'https://businesscentral.dynamics.com/?noSignUpCheck=1',
                 description: 'ระบบ ERP จัดการบัญชี การเงิน การจัดซื้อ ซัพพลายเชน และการบริหารธุรกิจองค์กร (Microsoft Dynamics 365 Business Central)',
                 icon: 'landmark',
-                badgeColor: 'bg-lime-50 text-lime-800 border-lime-200'
+                badgeColor: 'bg-purple-50 text-purple-800 border-purple-200'
             }
         ];
 
         // Categories Configurations
         const categories = [
             { id: 'all', label: 'ทั้งหมด', icon: 'layout-grid' },
+            { id: 'erp', label: 'ระบบ ERP', icon: 'database' },
             { id: 'it', label: 'IT & แจ้งซ่อม', icon: 'laptop' },
             { id: 'sales', label: 'ฝ่ายขาย & วางแผน', icon: 'trending-up' },
             { id: 'warehouse', label: 'คลังสินค้า & QC', icon: 'package' },
@@ -552,6 +553,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             const statTotalSystems = document.getElementById('stat-total-systems');
             if (statTotalSystems) statTotalSystems.innerText = systemsData.length;
+            const statTotalCategories = document.getElementById('stat-total-categories');
+            if (statTotalCategories) statTotalCategories.innerText = categories.length - 1;
             renderCategories();
             renderSystems();
             updateTime();
