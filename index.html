@@ -208,7 +208,7 @@
                 </div>
                 <div>
                     <p class="text-xs text-slate-500 font-medium">ระบบทั้งหมด</p>
-                    <p class="text-lg font-bold text-brand-950 font-heading"><span id="stat-total-systems">12</span>
+                    <p class="text-lg font-bold text-brand-950 font-heading"><span id="stat-total-systems">13</span>
                         <span class="text-xs font-normal text-slate-500">ระบบ</span>
                     </p>
                 </div>
@@ -309,7 +309,7 @@
                     </h3>
                 </div>
                 <span id="system-count"
-                    class="text-xs bg-brand-100 text-brand-800 px-3 py-1 rounded-full font-semibold">12 รายการ</span>
+                    class="text-xs bg-brand-100 text-brand-800 px-3 py-1 rounded-full font-semibold">13 รายการ</span>
             </div>
 
             <!-- Empty State Search Result -->
@@ -399,8 +399,18 @@
 
     <!-- JavaScript Business Logic -->
     <script>
-        // System Data Source (12 Systems)
+        // System Data Source (13 Systems)
         const systemsData = [
+            {
+                id: 'me24-it-portal',
+                name: 'IT Portal (แนะนำระบบ & นโยบาย)',
+                category: 'IT & แจ้งซ่อม',
+                catKey: 'it',
+                url: 'https://intranet.merich24.com/protal/index.html',
+                description: 'ศูนย์รวมระบบ คู่มือ นโยบาย ระเบียบข้อบังคับ และบริการไอทีสำหรับพนักงาน มี ริช ทเวนตี้โฟร์',
+                icon: 'compass',
+                badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-200'
+            },
             {
                 id: 'rp-system',
                 name: 'เว็บ RP (แจ้งซ่อมออนไลน์)',
