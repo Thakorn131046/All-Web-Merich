@@ -208,7 +208,7 @@
                 </div>
                 <div>
                     <p class="text-xs text-slate-500 font-medium">ระบบทั้งหมด</p>
-                    <p class="text-lg font-bold text-brand-950 font-heading"><span id="stat-total-systems">13</span>
+                    <p class="text-lg font-bold text-brand-950 font-heading"><span id="stat-total-systems">15</span>
                         <span class="text-xs font-normal text-slate-500">ระบบ</span>
                     </p>
                 </div>
@@ -232,7 +232,7 @@
                 </div>
                 <div>
                     <p class="text-xs text-slate-500 font-medium">หมวดหมู่</p>
-                    <p class="text-lg font-bold text-brand-950 font-heading"><span id="stat-total-categories">5</span> <span
+                    <p class="text-lg font-bold text-brand-950 font-heading"><span id="stat-total-categories">6</span> <span
                             class="text-xs font-normal text-slate-500">หมวด</span></p>
                 </div>
             </div>
@@ -309,7 +309,7 @@
                     </h3>
                 </div>
                 <span id="system-count"
-                    class="text-xs bg-brand-100 text-brand-800 px-3 py-1 rounded-full font-semibold">13 รายการ</span>
+                    class="text-xs bg-brand-100 text-brand-800 px-3 py-1 rounded-full font-semibold">15 รายการ</span>
             </div>
 
             <!-- Empty State Search Result -->
@@ -399,8 +399,28 @@
 
     <!-- JavaScript Business Logic -->
     <script>
-        // System Data Source (13 Systems)
+        // System Data Source (15 Systems)
         const systemsData = [
+            {
+                id: 'nova-hr',
+                name: 'NOVA-HR (ระบบประเมิน KPI)',
+                category: 'ฝ่ายบุคคล & HR',
+                catKey: 'hr',
+                url: 'https://booking.merich24.com/nova-kpi/index.php',
+                description: 'ระบบประเมินผลการปฏิบัติงาน KPI และบริหารจัดการบุคลากร (ME RICH 24 KPI) เข้าสู่ระบบด้วยรหัสพนักงาน',
+                icon: 'award',
+                badgeColor: 'bg-rose-50 text-rose-800 border-rose-200'
+            },
+            {
+                id: 'ebusiness-plus',
+                name: 'E-Business Plus (ระบบลางานออนไลน์)',
+                category: 'ฝ่ายบุคคล & HR',
+                catKey: 'hr',
+                url: 'https://leave.merich24.com/Login/Login.aspx',
+                description: 'ระบบบริการพนักงานออนไลน์ ยื่นคำขอลางาน ลาป่วย ลากิจ ตรวจสอบสิทธิ์วันลา และข้อมูลสิทธิประโยชน์บุคลากร',
+                icon: 'calendar-check-2',
+                badgeColor: 'bg-rose-50 text-rose-800 border-rose-200'
+            },
             {
                 id: 'me24-it-portal',
                 name: 'IT Portal (แนะนำระบบ & นโยบาย)',
@@ -537,6 +557,7 @@
         const categories = [
             { id: 'all', label: 'ทั้งหมด', icon: 'layout-grid' },
             { id: 'erp', label: 'ระบบ ERP', icon: 'database' },
+            { id: 'hr', label: 'ฝ่ายบุคคล & HR', icon: 'users' },
             { id: 'it', label: 'IT & แจ้งซ่อม', icon: 'laptop' },
             { id: 'sales', label: 'ฝ่ายขาย & วางแผน', icon: 'trending-up' },
             { id: 'warehouse', label: 'คลังสินค้า & QC', icon: 'package' },
