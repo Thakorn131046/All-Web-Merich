@@ -96,12 +96,12 @@
         }
 
         .green-card-hover {
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .green-card-hover:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 14px 28px -6px rgba(22, 101, 52, 0.14);
+            transform: translateY(-5px);
+            box-shadow: 0 16px 32px -8px rgba(22, 101, 52, 0.16), 0 4px 12px -2px rgba(22, 101, 52, 0.08);
         }
 
         /* Hide scrollbar for tabs */
@@ -128,6 +128,124 @@
             opacity: 0.45 !important;
             transform: scale(0.98);
         }
+
+        /* Custom Keyframe Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatSlow {
+            0%, 100% {
+                transform: translate(48px, 48px) scale(1);
+            }
+            50% {
+                transform: translate(40px, 36px) scale(1.05) rotate(1.5deg);
+            }
+        }
+
+        @keyframes pulseSlow {
+            0%, 100% {
+                opacity: 0.12;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.28;
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes starPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.4) rotate(18deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        @keyframes modalBackdropFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes modalCardScaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.94) translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes tabFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-up {
+            animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .animate-fade-down {
+            animation: fadeInDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .animate-float-slow {
+            animation: floatSlow 14s ease-in-out infinite;
+        }
+
+        .animate-pulse-slow {
+            animation: pulseSlow 7s ease-in-out infinite;
+        }
+
+        .modal-backdrop-anim {
+            animation: modalBackdropFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .modal-card-anim {
+            animation: modalCardScaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .tab-fade-in {
+            animation: tabFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .star-pop {
+            animation: starPop 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Accessibility: reduce motion when user prefers */
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 </head>
 
@@ -146,13 +264,13 @@
     </div>
 
     <!-- Top Navigation Header -->
-    <header class="bg-white/95 backdrop-blur-md border-b border-emerald-100 sticky top-0 z-40 shadow-sm">
+    <header class="bg-white/95 backdrop-blur-md border-b border-emerald-100 sticky top-0 z-40 shadow-sm animate-fade-down">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
 
             <!-- Company Logo & Brand Name -->
             <div class="flex items-center space-x-3 sm:space-x-4">
                 <div
-                    class="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-1 shadow-md shadow-brand-900/5 border border-emerald-100 shrink-0 overflow-hidden">
+                    class="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-1 shadow-md shadow-brand-900/5 border border-emerald-100 shrink-0 overflow-hidden hover:scale-105 hover:rotate-1 transition-transform duration-300 cursor-pointer">
                     <img src="pic/Logo-MR24.webp" alt="ME RICH TWENTY FOUR Logo" class="w-full h-full object-contain">
                 </div>
                 <div class="border-l border-emerald-200/60 pl-3 sm:pl-4">
@@ -167,16 +285,19 @@
             <!-- Header Info & Tools -->
             <div class="flex items-center space-x-3">
                 <div class="hidden md:flex flex-col items-end pr-4 border-r border-emerald-100 text-right">
-                    <span id="current-time" class="text-sm font-bold text-brand-900 font-heading">00:00:00</span>
+                    <div class="flex items-center space-x-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span id="current-time" class="text-sm font-bold text-brand-900 font-heading">00:00:00</span>
+                    </div>
                     <span id="current-date" class="text-xs text-slate-500">--/--/----</span>
                 </div>
                 <button onclick="window.location.reload(true)"
-                    class="p-2.5 text-brand-700 hover:text-brand-900 hover:bg-brand-50 rounded-xl transition"
+                    class="p-2.5 text-brand-700 hover:text-brand-900 hover:bg-brand-50 rounded-xl transition-all duration-300 active:rotate-180 hover:scale-105"
                     title="โหลดข้อมูลล่าสุด (Refresh)">
                     <i data-lucide="refresh-cw" class="w-5 h-5"></i>
                 </button>
                 <button onclick="toggleInfoModal()"
-                    class="p-2.5 text-brand-700 hover:text-brand-900 hover:bg-brand-50 rounded-xl transition"
+                    class="p-2.5 text-brand-700 hover:text-brand-900 hover:bg-brand-50 rounded-xl transition-all duration-200 hover:scale-110 active:scale-95"
                     title="คู่มือการใช้งาน">
                     <i data-lucide="help-circle" class="w-5 h-5"></i>
                 </button>
@@ -189,9 +310,12 @@
 
         <!-- Company Banner -->
         <div
-            class="relative overflow-hidden rounded-3xl green-gradient-bg text-white p-6 sm:p-10 mb-8 shadow-xl shadow-brand-900/10 border border-brand-800/40">
+            class="relative overflow-hidden rounded-3xl green-gradient-bg text-white p-6 sm:p-10 mb-8 shadow-xl shadow-brand-900/10 border border-brand-800/40 animate-fade-up">
+            <!-- Ambient Glowing Orb -->
+            <div class="absolute -top-20 -left-20 w-72 h-72 bg-emerald-400/20 rounded-full blur-3xl pointer-events-none animate-pulse-slow"></div>
+
             <!-- Decorative Vector Elements -->
-            <div class="absolute right-0 bottom-0 opacity-10 translate-x-12 translate-y-12 pointer-events-none">
+            <div class="absolute right-0 bottom-0 opacity-15 translate-x-12 translate-y-12 pointer-events-none animate-float-slow">
                 <svg width="380" height="300" viewBox="0 0 400 320" fill="white">
                     <polygon points="40,280 160,30 200,30 80,280" />
                     <polygon points="90,280 210,30 250,30 130,280" />
@@ -201,7 +325,7 @@
 
             <div class="relative z-10 max-w-3xl">
                 <span
-                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white/15 text-brand-200 backdrop-blur-md mb-3 border border-white/10">
+                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white/15 text-brand-200 backdrop-blur-md mb-3 border border-white/10 shadow-sm">
                     <i data-lucide="shield-check" class="w-3.5 h-3.5 mr-1.5 text-brand-300"></i>
                     ศูนย์รวมระบบงานสำหรับพนักงานภายในองค์กร
                 </span>
@@ -217,8 +341,9 @@
 
         <!-- System Stats Quick Glance -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8">
-            <div class="bg-white p-4 rounded-2xl border border-emerald-100/80 shadow-sm flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+            <div class="bg-white p-4 rounded-2xl border border-emerald-100/80 shadow-sm flex items-center space-x-3 hover:border-brand-300 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group cursor-default animate-fade-up"
+                style="animation-delay: 0.05s;">
+                <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-sm">
                     <i data-lucide="grid" class="w-5 h-5"></i>
                 </div>
                 <div>
@@ -229,8 +354,9 @@
                 </div>
             </div>
 
-            <div class="bg-white p-4 rounded-2xl border border-emerald-100/80 shadow-sm flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+            <div class="bg-white p-4 rounded-2xl border border-emerald-100/80 shadow-sm flex items-center space-x-3 hover:border-amber-300 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group cursor-default animate-fade-up"
+                style="animation-delay: 0.1s;">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 shadow-sm">
                     <i data-lucide="star" class="w-5 h-5"></i>
                 </div>
                 <div>
@@ -240,9 +366,10 @@
                 </div>
             </div>
 
-            <div class="bg-white p-4 rounded-2xl border border-emerald-100/80 shadow-sm flex items-center space-x-3">
+            <div class="bg-white p-4 rounded-2xl border border-emerald-100/80 shadow-sm flex items-center space-x-3 hover:border-emerald-300 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group cursor-default animate-fade-up"
+                style="animation-delay: 0.15s;">
                 <div
-                    class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                    class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-sm">
                     <i data-lucide="layers" class="w-5 h-5"></i>
                 </div>
                 <div>
@@ -254,11 +381,12 @@
 
             <!-- BOT Hub Card (Replaces Security Card) -->
             <div onclick="toggleBotModal()"
-                class="bg-white p-4 rounded-2xl border border-emerald-100/80 shadow-sm flex items-center justify-between cursor-pointer hover:border-violet-300 hover:shadow-md hover:-translate-y-0.5 transition duration-200 group"
+                class="bg-white p-4 rounded-2xl border border-emerald-100/80 shadow-sm flex items-center justify-between cursor-pointer hover:border-violet-400 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group animate-fade-up"
+                style="animation-delay: 0.2s;"
                 title="คลิกเพื่อดูข้อมูล BOT ทั้งหมด">
                 <div class="flex items-center space-x-3">
                     <div
-                        class="w-10 h-10 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center shrink-0 group-hover:bg-violet-600 group-hover:text-white transition duration-200 shadow-sm">
+                        class="w-10 h-10 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center shrink-0 group-hover:bg-violet-600 group-hover:text-white group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-sm">
                         <i data-lucide="bot" class="w-5 h-5"></i>
                     </div>
                     <div>
@@ -269,7 +397,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="text-slate-400 group-hover:text-violet-600 group-hover:translate-x-0.5 transition">
+                <div class="text-slate-400 group-hover:text-violet-600 group-hover:translate-x-1 transition-transform duration-200">
                     <i data-lucide="chevron-right" class="w-5 h-5"></i>
                 </div>
             </div>
@@ -391,8 +519,8 @@
     <div id="info-modal" onclick="handleModalBackdropClick(event)"
         class="fixed inset-0 bg-brand-950/40 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
         <div id="info-modal-card"
-            class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-emerald-100 relative animate-in fade-in zoom-in-95 duration-150">
-            <button onclick="toggleInfoModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 p-1"
+            class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-emerald-100 relative">
+            <button onclick="toggleInfoModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 p-1.5 rounded-xl hover:bg-slate-100 transition-all duration-200 hover:rotate-90 active:scale-95"
                 title="ปิด">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
@@ -443,8 +571,8 @@
     <div id="bot-modal" onclick="handleBotModalBackdrop(event)"
         class="fixed inset-0 bg-brand-950/50 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
         <div id="bot-modal-card"
-            class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-7 shadow-2xl border border-emerald-100 relative max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-150">
-            <button onclick="toggleBotModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 p-1.5 rounded-xl hover:bg-slate-100 transition"
+            class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-7 shadow-2xl border border-emerald-100 relative max-h-[90vh] flex flex-col">
+            <button onclick="toggleBotModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 p-1.5 rounded-xl hover:bg-slate-100 transition-all duration-200 hover:rotate-90 active:scale-95"
                 title="ปิด">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
@@ -592,7 +720,10 @@
         <div
             class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
             <div class="flex items-center space-x-2">
-                <div class="w-2 h-2 rounded-full bg-brand-500"></div>
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+                </span>
                 <p class="font-medium">© ME RICH TWENTY FOUR CO.,LTD. All rights reserved.</p>
             </div>
             <p class="flex items-center gap-1.5 text-slate-400">
@@ -828,8 +959,8 @@
                     : systemsData.filter(s => s.catKey === cat.id).length;
 
                 const activeClass = isActive
-                    ? 'bg-brand-700 text-white shadow-md shadow-brand-900/10 font-semibold'
-                    : 'bg-white text-slate-600 hover:bg-brand-50 border border-emerald-200/80 font-medium';
+                    ? 'bg-brand-700 text-white shadow-md shadow-brand-900/10 font-semibold scale-100 ring-2 ring-brand-700/20'
+                    : 'bg-white text-slate-600 hover:bg-brand-50 border border-emerald-200/80 font-medium hover:border-brand-300';
 
                 const badgeClass = isActive
                     ? 'bg-brand-800/80 text-brand-100'
@@ -838,10 +969,10 @@
                 return `
                     <button 
                         onclick="setCategory('${cat.id}')"
-                        class="px-4 py-2 rounded-xl text-xs sm:text-sm whitespace-nowrap transition flex items-center space-x-2 shrink-0 ${activeClass}">
+                        class="px-4 py-2 rounded-xl text-xs sm:text-sm whitespace-nowrap transition-all duration-200 active:scale-95 hover:scale-[1.03] flex items-center space-x-2 shrink-0 ${activeClass}">
                         <i data-lucide="${cat.icon}" class="w-4 h-4"></i>
                         <span>${cat.label}</span>
-                        <span class="text-[10px] px-1.5 py-0.5 rounded-full ${badgeClass}">${count}</span>
+                        <span class="text-[10px] px-1.5 py-0.5 rounded-full ${badgeClass} transition-colors">${count}</span>
                     </button>
                 `;
             }).join('');
@@ -893,7 +1024,14 @@
 
         // Toggle Favorite Status
         function toggleFavorite(id, event) {
-            if (event) event.stopPropagation();
+            if (event) {
+                event.stopPropagation();
+                const btn = event.currentTarget;
+                if (btn) {
+                    btn.classList.add('star-pop');
+                    setTimeout(() => btn.classList.remove('star-pop'), 400);
+                }
+            }
 
             if (favorites.includes(id)) {
                 favorites = favorites.filter(favId => favId !== id);
@@ -1045,7 +1183,7 @@
             const favoriteItems = systemsData.filter(s => favorites.includes(s.id));
             if (favoriteItems.length > 0 && searchQuery === '' && currentCategory === 'all') {
                 favContainer.classList.remove('hidden');
-                favGrid.innerHTML = favoriteItems.map(item => createCardHTML(item, true)).join('');
+                favGrid.innerHTML = favoriteItems.map((item, idx) => createCardHTML(item, true, idx)).join('');
             } else {
                 favContainer.classList.add('hidden');
             }
@@ -1057,17 +1195,18 @@
                 container.className = 'flex flex-col gap-3.5';
             }
 
-            // Render Main Cards
-            container.innerHTML = filtered.map(item => createCardHTML(item, false)).join('');
+            // Render Main Cards with Staggered Cascading Animation
+            container.innerHTML = filtered.map((item, idx) => createCardHTML(item, false, idx)).join('');
 
             lucide.createIcons();
         }
 
         // Card Template Generator
-        function createCardHTML(item, isFavSection) {
+        function createCardHTML(item, isFavSection, index) {
             const isFav = favorites.includes(item.id);
             const pinColor = isFav ? 'text-amber-500 fill-amber-500' : 'text-slate-300 hover:text-amber-500';
             const pinTitle = isFav ? 'ยกเลิกการปักหมุด' : 'ปักหมุดไว้ที่ส่วนบน';
+            const animDelay = Math.min((index || 0) * 0.035, 0.45);
 
             // List View Render
             if (viewMode === 'list' && !isFavSection) {
@@ -1081,17 +1220,18 @@
                         ondragleave="handleDragLeave(event)"
                         ondrop="handleDrop(event, '${item.id}')"
                         ondragend="handleDragEnd(event)"
-                        class="group bg-white rounded-2xl border border-emerald-100 p-4 hover:border-brand-400 hover:shadow-md transition-all duration-150 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        style="animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: ${animDelay}s;"
+                        class="group bg-white rounded-2xl border border-emerald-100 p-4 hover:border-brand-400 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div class="flex items-center space-x-3 sm:space-x-4 min-w-0">
-                            <div class="cursor-grab active:cursor-grabbing text-slate-300 hover:text-brand-600 p-1.5 rounded-md hover:bg-slate-100 transition drag-handle shrink-0" title="คลิกค้างแล้วลากเพื่อสลับลำดับ">
+                            <div class="cursor-grab active:cursor-grabbing text-slate-300 hover:text-brand-600 p-1.5 rounded-md hover:bg-slate-100 transition-colors drag-handle shrink-0" title="คลิกค้างแล้วลากเพื่อสลับลำดับ">
                                 <i data-lucide="grip-vertical" class="w-4 h-4"></i>
                             </div>
-                            <div class="w-11 h-11 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center shrink-0 group-hover:bg-brand-600 group-hover:text-white transition duration-200">
+                            <div class="w-11 h-11 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center shrink-0 group-hover:bg-brand-600 group-hover:text-white group-hover:scale-105 group-hover:-rotate-3 transition-all duration-200 shadow-sm">
                                 <i data-lucide="${item.icon}" class="w-5 h-5"></i>
                             </div>
                             <div class="min-w-0">
                                 <div class="flex items-center space-x-2">
-                                    <h4 class="font-bold text-slate-900 text-base font-heading truncate">${item.name}</h4>
+                                    <h4 class="font-bold text-slate-900 text-base font-heading truncate group-hover:text-brand-700 transition-colors">${item.name}</h4>
                                     <span class="text-[11px] px-2.5 py-0.5 rounded-full border font-semibold ${item.badgeColor} shrink-0">
                                         ${item.category}
                                     </span>
@@ -1101,22 +1241,22 @@
                         </div>
 
                         <div class="flex items-center space-x-1.5 w-full sm:w-auto justify-end border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-100 shrink-0">
-                            <button onclick="moveSystem('${item.id}', -1, event)" class="p-1.5 text-slate-300 hover:text-brand-700 hover:bg-slate-100 rounded-lg transition" title="เลื่อนขึ้น">
+                            <button onclick="moveSystem('${item.id}', -1, event)" class="p-1.5 text-slate-300 hover:text-brand-700 hover:bg-slate-100 rounded-lg hover:scale-110 active:scale-90 transition-all duration-150" title="เลื่อนขึ้น">
                                 <i data-lucide="chevron-up" class="w-3.5 h-3.5"></i>
                             </button>
-                            <button onclick="moveSystem('${item.id}', 1, event)" class="p-1.5 text-slate-300 hover:text-brand-700 hover:bg-slate-100 rounded-lg transition" title="เลื่อนลง">
+                            <button onclick="moveSystem('${item.id}', 1, event)" class="p-1.5 text-slate-300 hover:text-brand-700 hover:bg-slate-100 rounded-lg hover:scale-110 active:scale-90 transition-all duration-150" title="เลื่อนลง">
                                 <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
                             </button>
-                            <button onclick="toggleFavorite('${item.id}', event)" class="p-2 rounded-lg hover:bg-slate-100 transition" title="${pinTitle}">
+                            <button onclick="toggleFavorite('${item.id}', event)" class="p-2 rounded-lg hover:bg-slate-100 hover:scale-110 active:scale-90 transition-all duration-150" title="${pinTitle}">
                                 <i data-lucide="star" class="w-4 h-4 ${pinColor}"></i>
                             </button>
-                            <button onclick="copyToClipboard('${item.url}', event)" class="p-2 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition" title="คัดลอกลิงก์">
+                            <button onclick="copyToClipboard('${item.url}', event)" class="p-2 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 hover:scale-110 active:scale-90 transition-all duration-150" title="คัดลอกลิงก์">
                                 <i data-lucide="copy" class="w-4 h-4"></i>
                             </button>
                             <a href="${item.url}" target="_blank" rel="noopener noreferrer" 
-                               class="px-4 py-2 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-semibold transition flex items-center space-x-1.5 shadow-sm">
+                               class="px-4 py-2 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-semibold hover:shadow-md hover:scale-105 active:scale-95 transition-all duration-200 flex items-center space-x-1.5 shadow-sm group/btn">
                                 <span>เข้าสู่เว็บไซต์</span>
-                                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                                <i data-lucide="external-link" class="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-200"></i>
                             </a>
                         </div>
                     </div>
@@ -1135,31 +1275,32 @@
                     ondragleave="handleDragLeave(event)"
                     ondrop="handleDrop(event, '${item.id}')"
                     ondragend="handleDragEnd(event)"` : ''}
-                    class="group bg-white rounded-2xl border border-emerald-100/90 p-5 green-card-hover flex flex-col justify-between relative shadow-sm hover:border-brand-300 transition-all duration-150">
+                    style="animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: ${animDelay}s;"
+                    class="group bg-white rounded-2xl border border-emerald-100/90 p-5 green-card-hover flex flex-col justify-between relative shadow-sm hover:border-brand-300 transition-all duration-200">
                     <div>
                         <!-- Header & Actions -->
                         <div class="flex items-start justify-between mb-3">
                             <div class="flex items-center space-x-2">
                                 ${!isFavSection ? `
-                                <div class="cursor-grab active:cursor-grabbing text-slate-300 hover:text-brand-600 p-1 rounded-md hover:bg-slate-100 transition drag-handle" title="คลิกค้างแล้วลากเพื่อสลับลำดับ">
+                                <div class="cursor-grab active:cursor-grabbing text-slate-300 hover:text-brand-600 p-1 rounded-md hover:bg-slate-100 transition-colors drag-handle" title="คลิกค้างแล้วลากเพื่อสลับลำดับ">
                                     <i data-lucide="grip-vertical" class="w-4 h-4"></i>
                                 </div>` : ''}
-                                <div class="w-12 h-12 rounded-2xl bg-brand-50/80 border border-brand-100 text-brand-700 flex items-center justify-center group-hover:bg-brand-600 group-hover:text-white group-hover:border-transparent transition duration-200">
+                                <div class="w-12 h-12 rounded-2xl bg-brand-50/80 border border-brand-100 text-brand-700 flex items-center justify-center group-hover:bg-brand-600 group-hover:text-white group-hover:border-transparent group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 shadow-sm">
                                     <i data-lucide="${item.icon}" class="w-6 h-6"></i>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-1">
                                 ${!isFavSection ? `
-                                <button onclick="moveSystem('${item.id}', -1, event)" class="p-1 text-slate-300 hover:text-brand-700 hover:bg-slate-100 rounded-lg transition" title="เลื่อนขึ้น">
+                                <button onclick="moveSystem('${item.id}', -1, event)" class="p-1 text-slate-300 hover:text-brand-700 hover:bg-slate-100 rounded-lg hover:scale-110 active:scale-90 transition-all duration-150" title="เลื่อนขึ้น">
                                     <i data-lucide="chevron-up" class="w-3.5 h-3.5"></i>
                                 </button>
-                                <button onclick="moveSystem('${item.id}', 1, event)" class="p-1 text-slate-300 hover:text-brand-700 hover:bg-slate-100 rounded-lg transition" title="เลื่อนลง">
+                                <button onclick="moveSystem('${item.id}', 1, event)" class="p-1 text-slate-300 hover:text-brand-700 hover:bg-slate-100 rounded-lg hover:scale-110 active:scale-90 transition-all duration-150" title="เลื่อนลง">
                                     <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
                                 </button>` : ''}
-                                <button onclick="toggleFavorite('${item.id}', event)" class="p-1.5 rounded-lg hover:bg-slate-100 transition" title="${pinTitle}">
+                                <button onclick="toggleFavorite('${item.id}', event)" class="p-1.5 rounded-lg hover:bg-slate-100 hover:scale-110 active:scale-90 transition-all duration-150" title="${pinTitle}">
                                     <i data-lucide="star" class="w-4 h-4 ${pinColor}"></i>
                                 </button>
-                                <button onclick="copyToClipboard('${item.url}', event)" class="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition" title="คัดลอกลิงก์">
+                                <button onclick="copyToClipboard('${item.url}', event)" class="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 hover:scale-110 active:scale-90 transition-all duration-150" title="คัดลอกลิงก์">
                                     <i data-lucide="copy" class="w-4 h-4"></i>
                                 </button>
                             </div>
@@ -1171,7 +1312,7 @@
                         </span>
 
                         <!-- Name & Description -->
-                        <h4 class="font-bold text-slate-900 text-base mb-1.5 font-heading group-hover:text-brand-700 transition">
+                        <h4 class="font-bold text-slate-900 text-base mb-1.5 font-heading group-hover:text-brand-700 transition-colors">
                             <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="hover:underline">
                                 ${item.name}
                             </a>
@@ -1184,12 +1325,14 @@
                     <!-- Open Button -->
                     <div class="pt-3 border-t border-slate-100">
                         <a href="${item.url}" target="_blank" rel="noopener noreferrer" 
-                           class="w-full py-2.5 px-4 bg-emerald-50/60 hover:bg-brand-700 text-brand-800 hover:text-white rounded-xl text-xs font-semibold transition duration-200 flex items-center justify-center space-x-2 group/btn border border-emerald-200/60 hover:border-transparent">
+                           class="w-full py-2.5 px-4 bg-emerald-50/60 hover:bg-brand-700 text-brand-800 hover:text-white rounded-xl text-xs font-semibold transition-all duration-200 flex items-center justify-center space-x-2 group/btn border border-emerald-200/60 hover:border-transparent hover:shadow-md active:scale-[0.98]">
                             <span>เข้าสู่เว็บระบบ</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover/btn:translate-x-1 transition"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover/btn:translate-x-1.5 transition-transform duration-200"></i>
                         </a>
                     </div>
                 </div>
+            `;
+        }
             `;
         }
 
@@ -1318,28 +1461,45 @@
         // Modal Helpers
         function toggleInfoModal() {
             const modal = document.getElementById('info-modal');
-            modal.classList.toggle('hidden');
+            const card = document.getElementById('info-modal-card');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('modal-backdrop-anim');
+                card.classList.add('modal-card-anim');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('modal-backdrop-anim');
+                card.classList.remove('modal-card-anim');
+            }
         }
 
         function handleModalBackdropClick(event) {
             const modal = document.getElementById('info-modal');
-            const card = document.getElementById('info-modal-card');
             if (event.target === modal) {
-                modal.classList.add('hidden');
+                toggleInfoModal();
             }
         }
 
         // BOT Hub Modal Handlers
         function toggleBotModal() {
             const modal = document.getElementById('bot-modal');
-            modal.classList.toggle('hidden');
+            const card = document.getElementById('bot-modal-card');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('modal-backdrop-anim');
+                card.classList.add('modal-card-anim');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('modal-backdrop-anim');
+                card.classList.remove('modal-card-anim');
+            }
             lucide.createIcons();
         }
 
         function handleBotModalBackdrop(event) {
             const modal = document.getElementById('bot-modal');
             if (event.target === modal) {
-                modal.classList.add('hidden');
+                toggleBotModal();
             }
         }
 
@@ -1350,15 +1510,19 @@
             const contentSupport = document.getElementById('bot-tab-support');
 
             if (tab === 'app') {
-                tabAppBtn.className = 'flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center space-x-2 bg-white text-violet-900 shadow-sm border border-slate-200/60';
-                tabSupportBtn.className = 'flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center space-x-2 text-slate-600 hover:text-slate-900';
+                tabAppBtn.className = 'flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center justify-center space-x-2 bg-white text-violet-900 shadow-sm border border-slate-200/60';
+                tabSupportBtn.className = 'flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center justify-center space-x-2 text-slate-600 hover:text-slate-900';
                 contentApp.classList.remove('hidden');
+                contentApp.classList.add('tab-fade-in');
                 contentSupport.classList.add('hidden');
+                contentSupport.classList.remove('tab-fade-in');
             } else {
-                tabSupportBtn.className = 'flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center space-x-2 bg-white text-emerald-900 shadow-sm border border-slate-200/60';
-                tabAppBtn.className = 'flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center space-x-2 text-slate-600 hover:text-slate-900';
+                tabSupportBtn.className = 'flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center justify-center space-x-2 bg-white text-emerald-900 shadow-sm border border-slate-200/60';
+                tabAppBtn.className = 'flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center justify-center space-x-2 text-slate-600 hover:text-slate-900';
                 contentSupport.classList.remove('hidden');
+                contentSupport.classList.add('tab-fade-in');
                 contentApp.classList.add('hidden');
+                contentApp.classList.remove('tab-fade-in');
             }
             lucide.createIcons();
         }
